@@ -36,8 +36,8 @@
   --tinta:#143036;          /* texto corrido sobre claro */
   --tinta-suave:#42585e;
   --linha:#e4ebe9;
-  --fundo-claro:#f6f9f7;
-  --fundo-areia:#faf6ef;
+  --fundo-claro:#f4f9f7;
+  --fundo-fria:#eef6f6;
 
   --sombra:0 18px 50px -28px rgba(0,67,79,.45);
   --sombra-forte:0 26px 60px -30px rgba(0,67,79,.55);
@@ -63,9 +63,59 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.18;font-weight:700}
 
 .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
-.section{padding:96px 0}
-.section--tint{background:var(--fundo-claro)}
-.section--areia{background:var(--fundo-areia)}
+.section{padding:96px 0;position:relative;overflow:hidden}
+
+/* Quem somos: base neutra + forma de presença no canto (não lava a seção inteira) */
+#quem-somos{
+  background:
+    radial-gradient(circle at 102% -6%,rgba(0,158,154,.30) 0%,rgba(0,158,154,.14) 34%,transparent 64%),
+    linear-gradient(180deg,rgba(0,52,61,.08),transparent 230px),
+    var(--fundo-claro);
+}
+/* Como funciona: bloco sólido de presença, quebra o ritmo da página */
+#como-funciona{
+  color:#fff;
+  background:
+    radial-gradient(ellipse 900px 560px at 102% -8%,rgba(0,158,154,.38),transparent 60%),
+    radial-gradient(ellipse 760px 520px at -4% 108%,rgba(0,133,5,.30),transparent 58%),
+    linear-gradient(155deg,#053b45,#02323b 55%,#053a38);
+}
+#como-funciona .eyebrow{color:var(--areia-dourada)}
+#como-funciona .eyebrow::before{background:var(--areia-dourada)}
+#como-funciona .section-head h2{color:#fff}
+#como-funciona .section-head p{color:rgba(255,255,255,.82)}
+#como-funciona .callout{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);border-left-color:var(--areia-dourada)}
+#como-funciona .callout svg{color:var(--areia-dourada)}
+#como-funciona .callout p{color:rgba(255,255,255,.85)}
+#como-funciona .callout strong{color:#fff}
+#como-funciona .step{box-shadow:0 24px 48px -24px rgba(0,0,0,.5)}
+/* Faça parte: base neutra + forma quente no canto oposto */
+#faca-parte{
+  background:
+    radial-gradient(circle at -4% 104%,rgba(220,168,101,.34) 0%,rgba(220,168,101,.15) 34%,transparent 62%),
+    radial-gradient(circle at 104% -4%,rgba(0,133,5,.16),transparent 55%),
+    var(--branco);
+}
+/* Dúvidas: tom frio (não mais areia), com formas mais presentes */
+.section--fria{
+  background:
+    radial-gradient(circle at 104% -4%,rgba(0,67,79,.22) 0%,rgba(0,67,79,.10) 32%,transparent 62%),
+    radial-gradient(circle at -4% 104%,rgba(0,158,154,.26) 0%,rgba(0,158,154,.12) 32%,transparent 62%),
+    var(--fundo-fria);
+}
+#faq{
+  background:
+    linear-gradient(0deg,rgba(1,63,73,.14),transparent 240px),
+    radial-gradient(circle at 104% -4%,rgba(0,67,79,.22) 0%,rgba(0,67,79,.10) 32%,transparent 62%),
+    radial-gradient(circle at -4% 104%,rgba(0,158,154,.26) 0%,rgba(0,158,154,.12) 32%,transparent 62%),
+    var(--fundo-fria);
+}
+
+/* ---------- Elementos orgânicos suaves (identidade botânica) ---------- */
+.section-art{position:absolute;top:0;height:100%;width:380px;pointer-events:none;z-index:0;opacity:.6}
+.section-art--tr{right:-40px}
+.section-art--bl{left:-40px;transform:scaleX(-1)}
+#quem-somos .container,#faca-parte .container,#como-funciona .container,#faq .container{position:relative;z-index:1}
 
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -135,7 +185,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
   background-color:#00343d;
   background-image:
     linear-gradient(150deg,rgba(0,52,61,.93),rgba(1,58,67,.90) 50%,rgba(1,74,67,.90)),
-    url('assets/cannabis-bg.jpg');
+    url('assets/cannabiscloseplantação.webp');
   background-size:auto,cover;
   background-position:center,center;
   background-repeat:no-repeat,no-repeat;
@@ -301,7 +351,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 /* ---------- Responsivo ---------- */
 @media(max-width:920px){
   .grid-3,.grid-2,.steps,.acolhimento .grid-contact,.footer-grid{grid-template-columns:1fr}
-  .hero-art{display:none}
+  .hero-art,.section-art{display:none}
   .nav-links,.nav-cta .btn{display:none}
   .nav-toggle{display:block}
   .nav.open .nav-links{
@@ -389,6 +439,15 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ QUEM SOMOS ============================ -->
 <section class="section" id="quem-somos">
+  <svg class="section-art section-art--tr" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#009E9A" stroke-width="1.1" opacity="0.35">
+      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
+      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
+    </g>
+    <g fill="#008505" opacity="0.4">
+      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
+    </g>
+  </svg>
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Quem somos</span>
@@ -437,7 +496,16 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 </section>
 
 <!-- ============================ COMO FUNCIONA ============================ -->
-<section class="section section--tint" id="como-funciona">
+<section class="section" id="como-funciona">
+  <svg class="section-art section-art--tr" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#ffffff" stroke-width="1.1" opacity="0.4">
+      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
+      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
+    </g>
+    <g fill="#DCA865" opacity="0.6">
+      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
+    </g>
+  </svg>
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Como funciona</span>
@@ -482,6 +550,15 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ FAÇA PARTE ============================ -->
 <section class="section" id="faca-parte">
+  <svg class="section-art section-art--bl" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#00434F" stroke-width="1.1" opacity="0.3">
+      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
+      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
+    </g>
+    <g fill="#DCA865" opacity="0.5">
+      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
+    </g>
+  </svg>
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Faça parte</span>
@@ -527,7 +604,16 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 </section>
 
 <!-- ============================ FAQ ============================ -->
-<section class="section section--areia" id="faq">
+<section class="section section--fria" id="faq">
+  <svg class="section-art section-art--bl" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#00434F" stroke-width="1.1" opacity="0.32">
+      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
+      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
+    </g>
+    <g fill="#009E9A" opacity="0.45">
+      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
+    </g>
+  </svg>
   <div class="container">
     <div class="section-head section-head--center reveal">
       <span class="eyebrow">Dúvidas frequentes</span>
