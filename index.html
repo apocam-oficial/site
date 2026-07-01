@@ -363,8 +363,10 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 .footer-cnpj{margin-top:4px;font-size:.9rem;color:rgba(255,255,255,.55);letter-spacing:.01em}
 .footer-col a:hover{color:var(--areia-dourada);transform:translateX(4px)}
 .footer-contact a:hover{transform:none}
-.footer-bottom{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:26px;font-size:.85rem;color:rgba(255,255,255,.6)}
-.footer-bottom .ethic{max-width:620px}
+.footer-bottom{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 28px;padding-top:26px;font-size:.85rem;color:rgba(255,255,255,.6)}
+.footer-bottom .ethic{max-width:560px}
+.footer-legal{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;justify-content:flex-end}
+.footer-legal span:first-child{color:rgba(255,255,255,.72);font-weight:600;letter-spacing:.01em}
 
 /* ---------- Reveal no scroll ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -758,7 +760,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
           <a href="https://instagram.com/apocam" target="_blank" rel="noopener" aria-label="Instagram da APOCAM">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="mailto:contato@apocam.org.br" aria-label="E-mail da APOCAM">
+          <a href="mailto:medicina.apocam@gmail.com" aria-label="E-mail da APOCAM">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -776,24 +778,23 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
       <div class="footer-col footer-contact">
         <h4>Contato</h4>
         <p>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6"/></svg>
-          <span>SCES Trecho 2, Lote 32, Pier 21, Loja R60C<br>Asa Sul, Brasília/DF · CEP 70.200-002</span>
-        </p>
-        <p>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <a href="mailto:contato@apocam.org.br">contato@apocam.org.br</a>
+          <a href="mailto:medicina.apocam@gmail.com">medicina.apocam@gmail.com</a>
         </p>
         <p>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 7h8M8 11h8M8 15h5" stroke-linecap="round"/></svg>
-          <!-- CNPJ FICTÍCIO — substituir pelo número oficial da APOCAM quando confirmado -->
-          <span class="footer-cnpj">CNPJ 48.923.174/0001-60</span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.27.86 5.83 2.41a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.2 8.2 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.24-8.24zm4.52 10.4c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42l-.48-.01c-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          <!-- WHATSAPP: substituir 5561000000000 pelo número oficial da APOCAM -->
+          <a href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener">Falar no WhatsApp</a>
         </p>
       </div>
     </div>
 
     <div class="footer-bottom">
       <span class="ethic">Toda a comunicação da APOCAM é ética, educativa, não criminalizante e baseada em evidências.</span>
-      <span>&copy; 2026 APOCAM. Todos os direitos reservados.</span>
+      <div class="footer-legal">
+        <span>CNPJ 65.932.384/0001-26</span>
+        <span>&copy; 2026 APOCAM. Todos os direitos reservados.</span>
+      </div>
     </div>
   </div>
 </footer>
