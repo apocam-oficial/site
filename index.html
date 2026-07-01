@@ -111,10 +111,14 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
     var(--fundo-fria);
 }
 
-/* ---------- Elementos orgânicos suaves (identidade botânica) ---------- */
-.section-art{position:absolute;top:0;height:100%;width:380px;pointer-events:none;z-index:0;opacity:.6}
-.section-art--tr{right:-40px}
-.section-art--bl{left:-40px;transform:scaleX(-1)}
+/* ---------- Marca d'água APOCAM (símbolo da folha) ---------- */
+.watermark{position:absolute;pointer-events:none;z-index:0;width:300px;height:auto;user-select:none}
+.watermark--tr{top:34px;right:-46px;transform:rotate(8deg)}
+.watermark--bl{bottom:34px;left:-46px;transform:rotate(-8deg)}
+/* Em fundos claros: símbolo colorido, bem suave */
+.watermark--soft{opacity:.07}
+/* Em fundos escuros: símbolo branco, discreto */
+.watermark--light{opacity:.10;filter:brightness(0) invert(1)}
 #quem-somos .container,#faca-parte .container,#como-funciona .container,#faq .container{position:relative;z-index:1}
 
 .eyebrow{
@@ -192,7 +196,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
   background-attachment:scroll,fixed;
 }
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 18%,rgba(0,158,154,.30),transparent 45%),radial-gradient(circle at 12% 92%,rgba(0,133,5,.22),transparent 42%);pointer-events:none}
-.hero-art{position:absolute;top:0;right:0;height:100%;width:46%;opacity:.28;pointer-events:none}
+.hero-art{position:absolute;top:50%;right:4%;transform:translateY(-50%) rotate(6deg);width:340px;height:auto;opacity:.12;filter:brightness(0) invert(1);pointer-events:none;z-index:1}
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:24px;padding:108px 0 116px;max-width:760px}
 .hero .pill{
   display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
@@ -334,14 +338,32 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 .form-feedback.err{display:block;background:rgba(217,43,67,.08);color:var(--carmim);border:1px solid rgba(217,43,67,.25)}
 
 /* ---------- Footer ---------- */
-.site-footer{background:#022f38;color:rgba(255,255,255,.78);padding:64px 0 30px}
-.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:42px;border-bottom:1px solid rgba(255,255,255,.12)}
-.footer-brand .brand-logo--footer{height:72px;width:auto}
-.footer-brand p{margin-top:16px;font-family:"Lora",serif;font-size:1rem;max-width:360px;color:rgba(255,255,255,.72)}
-.footer-col h4{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-family:"Montserrat";margin-bottom:16px}
-.footer-col a,.footer-col p{display:block;color:rgba(255,255,255,.72);font-size:.96rem;margin-bottom:10px;transition:color .18s,transform .18s var(--ease)}
+.site-footer{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 720px 400px at 88% 0%,rgba(0,158,154,.16),transparent 60%),
+    linear-gradient(180deg,#043a44,#022a32);
+  color:rgba(255,255,255,.78);padding:76px 0 34px;
+}
+.site-footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde),var(--verde-agua),var(--areia-dourada))}
+.footer-watermark{position:absolute;right:-70px;bottom:-40px;width:340px;height:auto;opacity:.05;filter:brightness(0) invert(1);pointer-events:none;user-select:none}
+.footer-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.7fr 1fr 1.2fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer-brand .brand-logo--footer{height:78px;width:auto}
+.footer-brand p{margin-top:18px;font-family:"Lora",serif;font-size:1rem;max-width:380px;color:rgba(255,255,255,.72);line-height:1.7}
+.footer-social{display:flex;gap:12px;margin-top:22px}
+.footer-social a{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);transition:background .22s,border-color .22s,transform .22s var(--ease)}
+.footer-social a:hover{background:var(--verde-agua);border-color:var(--verde-agua);transform:translateY(-3px)}
+.footer-social svg{width:19px;height:19px;color:#fff}
+.footer-col h4{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-family:"Montserrat";margin-bottom:18px}
+.footer-col a,.footer-col p{display:block;color:rgba(255,255,255,.72);font-size:.96rem;margin-bottom:11px;transition:color .18s,transform .18s var(--ease)}
+.footer-col a{width:fit-content}
+.footer-contact p{display:flex;gap:11px;align-items:flex-start;line-height:1.55}
+.footer-contact p svg{width:17px;height:17px;color:var(--areia-dourada);flex:none;margin-top:3px}
+.footer-contact a{color:rgba(255,255,255,.72)}
+.footer-cnpj{margin-top:4px;font-size:.9rem;color:rgba(255,255,255,.55);letter-spacing:.01em}
 .footer-col a:hover{color:var(--areia-dourada);transform:translateX(4px)}
-.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font-size:.85rem;color:rgba(255,255,255,.6)}
+.footer-contact a:hover{transform:none}
+.footer-bottom{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:26px;font-size:.85rem;color:rgba(255,255,255,.6)}
 .footer-bottom .ethic{max-width:620px}
 
 /* ---------- Reveal no scroll ---------- */
@@ -351,7 +373,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 /* ---------- Responsivo ---------- */
 @media(max-width:920px){
   .grid-3,.grid-2,.steps,.acolhimento .grid-contact,.footer-grid{grid-template-columns:1fr}
-  .hero-art,.section-art{display:none}
+  .hero-art,.watermark{display:none}
   .nav-links,.nav-cta .btn{display:none}
   .nav-toggle{display:block}
   .nav.open .nav-links{
@@ -410,15 +432,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ HERO ============================ -->
 <section class="hero" id="inicio">
-  <svg class="hero-art" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="#ffffff" stroke-width="1.1" opacity="0.5">
-      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
-      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
-    </g>
-    <g fill="#DCA865" opacity="0.65">
-      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
-    </g>
-  </svg>
+  <img class="hero-art" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="hero-inner">
       <span class="pill"><span class="dot"></span>Associação civil sem fins lucrativos · Brasília/DF</span>
@@ -439,15 +453,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ QUEM SOMOS ============================ -->
 <section class="section" id="quem-somos">
-  <svg class="section-art section-art--tr" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="#009E9A" stroke-width="1.1" opacity="0.35">
-      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
-      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
-    </g>
-    <g fill="#008505" opacity="0.4">
-      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
-    </g>
-  </svg>
+  <img class="watermark watermark--tr watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Quem somos</span>
@@ -497,15 +503,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ COMO FUNCIONA ============================ -->
 <section class="section" id="como-funciona">
-  <svg class="section-art section-art--tr" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="#ffffff" stroke-width="1.1" opacity="0.4">
-      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
-      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
-    </g>
-    <g fill="#DCA865" opacity="0.6">
-      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
-    </g>
-  </svg>
+  <img class="watermark watermark--tr watermark--light" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Como funciona</span>
@@ -550,15 +548,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ FAÇA PARTE ============================ -->
 <section class="section" id="faca-parte">
-  <svg class="section-art section-art--bl" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="#00434F" stroke-width="1.1" opacity="0.3">
-      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
-      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
-    </g>
-    <g fill="#DCA865" opacity="0.5">
-      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
-    </g>
-  </svg>
+  <img class="watermark watermark--bl watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Faça parte</span>
@@ -605,15 +595,7 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ FAQ ============================ -->
 <section class="section section--fria" id="faq">
-  <svg class="section-art section-art--bl" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="#00434F" stroke-width="1.1" opacity="0.32">
-      <path d="M250 90c40 30 60 80 55 140-5 60-45 110-100 130" stroke-linecap="round"/>
-      <path d="M250 90c-30 25-45 60-42 100M250 90c45 18 75 50 88 95M308 230c-20-5-40 0-58 12M295 360c25-8 50-30 62-58M205 360c-22-6-42-22-52-46" stroke-linecap="round"/>
-    </g>
-    <g fill="#009E9A" opacity="0.45">
-      <circle cx="250" cy="90" r="4"/><circle cx="308" cy="230" r="3.4"/><circle cx="295" cy="360" r="3.4"/><circle cx="205" cy="360" r="3.4"/><circle cx="338" cy="185" r="3"/><circle cx="153" cy="314" r="3"/>
-    </g>
-  </svg>
+  <img class="watermark watermark--bl watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="section-head section-head--center reveal">
       <span class="eyebrow">Dúvidas frequentes</span>
@@ -760,14 +742,26 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
 
 <!-- ============================ FOOTER ============================ -->
 <footer class="site-footer">
+  <img class="footer-watermark" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="brand">
           <!-- LOGO OFICIAL da APOCAM (versão de texto branco) para fundo escuro -->
-          <img class="brand-logo brand-logo--footer" src="assets/logo-apocam-branco.png" width="89" height="72" alt="APOCAM - Associação Popular de Cannabis Medicinal">
+          <img class="brand-logo brand-logo--footer" src="assets/logo-apocam-branco.png" width="96" height="78" alt="APOCAM - Associação Popular de Cannabis Medicinal">
         </div>
         <p>Associação Popular de Cannabis Medicinal. Acolhimento, informação e cuidado para uma saúde mais justa, ética e baseada em evidências.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/5561000000000" target="_blank" rel="noopener" aria-label="WhatsApp da APOCAM">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.27.86 5.83 2.41a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.2 8.2 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.24-8.24zm4.52 10.4c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42l-.48-.01c-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          </a>
+          <a href="https://instagram.com/apocam" target="_blank" rel="noopener" aria-label="Instagram da APOCAM">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="mailto:contato@apocam.org.br" aria-label="E-mail da APOCAM">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="footer-col">
@@ -779,10 +773,21 @@ h1,h2,h3,h4{font-family:"Montserrat",sans-serif;color:var(--azul);line-height:1.
         <a href="#acolhimento">Acolhimento</a>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col footer-contact">
         <h4>Contato</h4>
-        <p>SCES Trecho 2, Lote 32<br>Pier 21, Loja R60C<br>Asa Sul, Brasília/DF<br>CEP 70.200-002</p>
-        <!-- CNPJ: inserir o número definitivo quando confirmado -->
+        <p>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span>SCES Trecho 2, Lote 32, Pier 21, Loja R60C<br>Asa Sul, Brasília/DF · CEP 70.200-002</span>
+        </p>
+        <p>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a href="mailto:contato@apocam.org.br">contato@apocam.org.br</a>
+        </p>
+        <p>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 7h8M8 11h8M8 15h5" stroke-linecap="round"/></svg>
+          <!-- CNPJ FICTÍCIO — substituir pelo número oficial da APOCAM quando confirmado -->
+          <span class="footer-cnpj">CNPJ 48.923.174/0001-60</span>
+        </p>
       </div>
     </div>
 
