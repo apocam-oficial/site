@@ -379,23 +379,53 @@
       var dust = new THREE.Points(dGeo, dMat);
       scene.add(dust);
 
-      /* ----- Posição responsiva (menor e mais contida à direita) ----- */
-      var wide = true, baseK = 0.78, baseY = 0.02, baseX = 1.02;
+      /* ----- Posição/tamanho 100% responsivos -----
+         Calcula a área visível da câmera e encaixa o símbolo:
+         · telas largas → metade direita, sem invadir a coluna de texto
+         · telas estreitas/retrato → faixa superior reservada pelo CSS */
+      var worldH = worldW * (H / W);
+      var FOVr = camera.fov * Math.PI / 180;
+      var wide = true, baseK = 0.78, baseY = 0.02, baseX = 1.02, opTarget = 0.96;
       function layout() {
         var w = hero.clientWidth, h = hero.clientHeight;
         renderer.setSize(w, h, false);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
+        var visH = 2 * Math.tan(FOVr / 2) * camera.position.z; /* altura visível em z=0 */
+        var visW = visH * camera.aspect;
         wide = w / h > 1.05;
-        baseK = wide ? 0.78 : 0.5;
-        baseX = wide ? 1.02 : 0;
-        baseY = wide ? 0.02 : 0.66;
+        if (wide) {
+          var availW = visW * 0.40, availH = visH * 0.78;
+          baseK = Math.min(availW / worldW, availH / worldH, 0.95);
+          baseX = visW * 0.265;
+          baseY = 0.02;
+          opTarget = 0.96;
+        } else {
+          var winH = window.innerHeight || h;
+          var headerEl = document.getElementById('siteHeader');
+          var headerPx = headerEl ? headerEl.offsetHeight : 72;
+          var bandTop = headerPx + winH * 0.04;   /* faixa: logo abaixo do header */
+          var bandH = winH * 0.30;
+          var availW2 = visW * 0.74, availH2 = visH * (bandH / h);
+          baseK = Math.min(availW2 / worldW, availH2 / worldH);
+          baseX = 0;
+          baseY = visH * (0.5 - (bandTop + bandH / 2) / h);
+          opTarget = 0.92;
+        }
         group.position.x = baseX;
         group.position.y = baseY;
         group.scale.set(baseK, baseK, baseK);
       }
       layout();
-      window.addEventListener('resize', layout);
+      var resizeT = null;
+      window.addEventListener('resize', function () {
+        layout();
+        clearTimeout(resizeT);
+        resizeT = setTimeout(function () {
+          if (hasGsap) { window.gsap.to(mat, { opacity: opTarget, duration: 0.4, overwrite: 'auto' }); }
+          else { mat.opacity = opTarget; }
+        }, 120);
+      });
 
       /* ----- Mouse parallax ----- */
       var mx = 0, my = 0, tmx = 0, tmy = 0;
@@ -407,12 +437,11 @@
       }
 
       /* ----- Entrada ----- */
-      function targetOpacity() { return wide ? 0.96 : 0.4; }
       if (hasGsap) {
-        window.gsap.to(mat, { opacity: targetOpacity(), duration: 1.6, ease: 'power2.out', delay: 0.3 });
+        window.gsap.to(mat, { opacity: opTarget, duration: 1.6, ease: 'power2.out', delay: 0.3 });
         window.gsap.to(dMat, { opacity: 0.5, duration: 2.4, ease: 'power2.out', delay: 0.8 });
       } else {
-        mat.opacity = targetOpacity(); dMat.opacity = 0.5;
+        mat.opacity = opTarget; dMat.opacity = 0.5;
       }
 
       /* ----- Loop: formação + flutuação (pausa fora da tela/aba) ----- */

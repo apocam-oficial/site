@@ -656,6 +656,23 @@ html.anim.no-gsap .reveal-hero{opacity:1;transition:opacity .8s var(--ease)}
   .hero-actions .btn{width:100%}
 }
 
+/* ---------- Hero em telas estreitas/retrato: símbolo 3D em faixa própria ---------- */
+@media (max-aspect-ratio: 21/20){
+  .hero-inner{
+    padding-top:calc(var(--header-h) + 37vh);
+    padding-top:calc(var(--header-h) + 37svh);
+  }
+  .hero.no-webgl .hero-logo-fallback{
+    display:block;right:50%;
+    top:calc(var(--header-h) + 19vh);
+    top:calc(var(--header-h) + 19svh);
+    transform:translate(50%,-50%);
+    width:min(62vw,46vh);
+    width:min(62vw,46svh);
+    opacity:.92;
+  }
+}
+
 /* ---------- Movimento reduzido ---------- */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
