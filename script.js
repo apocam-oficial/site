@@ -351,7 +351,8 @@
         map: dotTex, alphaTest: 0.35,
         depthWrite: false, sizeAttenuation: true
       });
-      group.add(new THREE.Points(geo, mat));
+      var leafPts = new THREE.Points(geo, mat);
+      group.add(leafPts);
 
       /* ----- Poeira dourada/verde-água ambiente ----- */
       var dustN = 240;
@@ -385,6 +386,7 @@
          · telas estreitas/retrato → faixa superior reservada pelo CSS */
       var worldH = worldW * (H / W);
       var FOVr = camera.fov * Math.PI / 180;
+      var hit = document.getElementById('logoHit');
       var wide = true, baseK = 0.78, baseY = 0.02, baseX = 1.02, opTarget = 0.96;
       function layout() {
         var w = hero.clientWidth, h = hero.clientHeight;
@@ -394,27 +396,43 @@
         var visH = 2 * Math.tan(FOVr / 2) * camera.position.z; /* altura visível em z=0 */
         var visW = visH * camera.aspect;
         wide = w / h > 1.05;
+        leafPts.visible = true;
         if (wide) {
+          /* telas largas: emblema na metade direita */
           var availW = visW * 0.40, availH = visH * 0.78;
           baseK = Math.min(availW / worldW, availH / worldH, 0.95);
           baseX = visW * 0.265;
           baseY = 0.02;
           opTarget = 0.96;
         } else {
+          /* celular/retrato: emblema em faixa própria acima do texto
+             (no topo, a logo do header sai de cena — o emblema É a marca) */
           var winH = window.innerHeight || h;
           var headerEl = document.getElementById('siteHeader');
           var headerPx = headerEl ? headerEl.offsetHeight : 72;
-          var bandTop = headerPx + winH * 0.04;   /* faixa: logo abaixo do header */
+          var bandTop = headerPx + winH * 0.04;
           var bandH = winH * 0.30;
           var availW2 = visW * 0.74, availH2 = visH * (bandH / h);
           baseK = Math.min(availW2 / worldW, availH2 / worldH);
           baseX = 0;
           baseY = visH * (0.5 - (bandTop + bandH / 2) / h);
-          opTarget = 0.92;
+          opTarget = 0.94;
         }
         group.position.x = baseX;
         group.position.y = baseY;
         group.scale.set(baseK, baseK, baseK);
+        /* zona de interação (arrastar para girar) sobre o emblema */
+        if (hit) {
+          var pw = w * (worldW * baseK / visW) * 1.18;
+          var ph2 = h * (worldH * baseK / visH) * 1.18;
+          var pxc = w * (0.5 + baseX / visW);
+          var pyc = h * (0.5 - baseY / visH);
+          hit.style.display = 'block';
+          hit.style.width = pw.toFixed(0) + 'px';
+          hit.style.height = ph2.toFixed(0) + 'px';
+          hit.style.left = (pxc - pw / 2).toFixed(0) + 'px';
+          hit.style.top = (pyc - ph2 / 2).toFixed(0) + 'px';
+        }
       }
       layout();
       var resizeT = null;
@@ -426,6 +444,33 @@
           else { mat.opacity = opTarget; }
         }, 120);
       });
+
+      /* ----- Interação: arrastar para girar a logo (mouse e toque) ----- */
+      var dragging = false, userY = 0, userX = 0, velY = 0, velX = 0;
+      if (hit) {
+        var lastPX = 0, lastPY = 0;
+        hit.addEventListener('pointerdown', function (e) {
+          dragging = true;
+          lastPX = e.clientX; lastPY = e.clientY;
+          velY = 0; velX = 0;
+          try { hit.setPointerCapture(e.pointerId); } catch (err) {}
+          hit.classList.add('arrastando');
+          kick();
+        });
+        hit.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          var dx = (e.clientX - lastPX) / Math.max(1, hero.clientWidth);
+          var dy = (e.clientY - lastPY) / Math.max(1, hero.clientHeight);
+          lastPX = e.clientX; lastPY = e.clientY;
+          userY += dx * 5;
+          userX = Math.max(-0.7, Math.min(0.7, userX + dy * 3));
+          velY = dx * 5;
+          velX = dy * 3;
+        });
+        var soltar = function () { dragging = false; hit.classList.remove('arrastando'); };
+        hit.addEventListener('pointerup', soltar);
+        hit.addEventListener('pointercancel', soltar);
+      }
 
       /* ----- Mouse parallax ----- */
       var mx = 0, my = 0, tmx = 0, tmy = 0;
@@ -468,8 +513,13 @@
 
         mx += (tmx - mx) * 0.045;
         my += (tmy - my) * 0.045;
-        group.rotation.y = Math.sin(t * 0.14) * 0.08 + mx * 0.24;
-        group.rotation.x = Math.cos(t * 0.11) * 0.04 + my * 0.12;
+        if (!dragging) {
+          userY += velY; velY *= 0.94;      /* inércia após soltar */
+          userX += velX; velX *= 0.94;
+          userX *= 0.985;                   /* inclinação volta ao neutro */
+        }
+        group.rotation.y = userY + Math.sin(t * 0.14) * 0.08 + mx * 0.24;
+        group.rotation.x = Math.max(-1, Math.min(1, userX + Math.cos(t * 0.11) * 0.04 + my * 0.12));
         var breathe = 1 + Math.sin(t * 0.5) * 0.014;
         group.scale.set(baseK * breathe, baseK * breathe, baseK * breathe);
         group.position.y = baseY + Math.sin(t * 0.4) * 0.03;

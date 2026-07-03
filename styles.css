@@ -204,7 +204,7 @@ h1,h2,h3,h4{font-family:var(--font-display);color:var(--azul);line-height:1.12;f
 }
 .nav{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);transition:height .35s var(--ease)}
 .site-header.scrolled .nav{height:62px}
-.brand{display:flex;align-items:center;flex:none}
+.brand{display:flex;align-items:center;flex:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
 .brand .brand-logo{height:52px;width:auto;transition:height .35s var(--ease),transform .4s var(--ease)}
 .site-header.scrolled .brand-logo{height:42px}
 .brand:hover .brand-logo{transform:scale(1.06) rotate(-2deg)}
@@ -252,6 +252,13 @@ body.menu-open .nav-toggle span:nth-child(3){transform:translateY(-9px) rotate(-
 }
 .hero.no-webgl .hero-canvas{display:none}
 .hero.no-webgl .hero-logo-fallback{display:block}
+/* Zona invisível de arrasto sobre o emblema (girar a logo) */
+.logo-hit{
+  position:absolute;z-index:3;display:none;border-radius:50%;
+  touch-action:none;cursor:grab;-webkit-tap-highlight-color:transparent;
+}
+.logo-hit.arrastando{cursor:grabbing}
+.hero.no-webgl .logo-hit{display:none!important}
 .hero .container{position:relative;z-index:2}
 .hero-inner{display:grid;gap:22px;max-width:730px;padding:calc(var(--header-h) + 48px) 0 96px}
 .hero .pill{
@@ -656,15 +663,26 @@ html.anim.no-gsap .reveal-hero{opacity:1;transition:opacity .8s var(--ease)}
   .hero-actions .btn{width:100%}
 }
 
-/* ---------- Hero em telas estreitas/retrato ---------- */
+/* ---------- Hero em telas estreitas/retrato ----------
+   O emblema (em partículas, ou estático sem WebGL) ocupa uma
+   faixa própria acima do texto e vira A marca do topo: a logo
+   do header some enquanto você está no início e reaparece ao
+   rolar a página. */
 @media (max-aspect-ratio: 21/20){
-  /* Com partículas: emblema 3D em faixa própria acima do conteúdo */
-  .hero:not(.no-webgl) .hero-inner{
+  .hero-inner{
     padding-top:calc(var(--header-h) + 37vh);
     padding-top:calc(var(--header-h) + 37svh);
   }
-  /* Sem WebGL: nada de logo duplicada — o texto ocupa o espaço */
-  .hero.no-webgl .hero-logo-fallback{display:none}
+  .hero.no-webgl .hero-logo-fallback{
+    display:block;right:50%;
+    top:calc(var(--header-h) + 19vh);
+    top:calc(var(--header-h) + 19svh);
+    transform:translate(50%,-50%);
+    width:min(62vw,46vh);
+    width:min(62vw,46svh);
+    opacity:.92;
+  }
+  .site-header:not(.scrolled) .brand{opacity:0;transform:scale(.9);pointer-events:none}
 }
 
 /* ---------- Movimento reduzido ---------- */
