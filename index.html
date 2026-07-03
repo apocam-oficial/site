@@ -7,6 +7,7 @@
 <meta name="description" content="A APOCAM é uma associação civil sem fins lucrativos que acolhe, orienta e acompanha pacientes e famílias no acesso ético, seguro e informado à cannabis medicinal. Brasília/DF.">
 <meta name="author" content="APOCAM">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#01323d">
 
 <!-- Open Graph -->
 <meta property="og:title" content="APOCAM | Associação Popular de Cannabis Medicinal">
@@ -16,69 +17,80 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,480;0,9..144,560;0,9..144,640;1,9..144,420;1,9..144,480&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<a class="skip-link" href="#quem-somos">Pular para o conteúdo</a>
+<div class="grain" aria-hidden="true"></div>
+
 <!-- ============================ HEADER ============================ -->
 <header class="site-header" id="siteHeader">
   <div class="container">
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Navegação principal">
       <a href="#inicio" class="brand" aria-label="APOCAM, página inicial">
-        <!-- LOGO OFICIAL da APOCAM (folhas coloridas + nome) para fundo claro -->
+        <!-- LOGO OFICIAL da APOCAM (folhas coloridas + nome) para o cabeçalho claro -->
         <img class="brand-logo" src="assets/logo-apocam.png" width="69" height="56" alt="APOCAM - Associação Popular de Cannabis Medicinal">
       </a>
 
-      <div class="nav-links">
-        <a href="#quem-somos">Quem somos</a>
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#medicos-parceiros">Médicos</a>
-        <a href="#equipe-juridica">Jurídico</a>
-        <a href="#faca-parte">Faça parte</a>
-        <a href="#faq">Dúvidas</a>
-        <a href="#acolhimento">Acolhimento</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#quem-somos"><span data-i="01">Quem somos</span></a>
+        <a href="#como-funciona"><span data-i="02">Como funciona</span></a>
+        <a href="#medicos-parceiros"><span data-i="03">Médicos</span></a>
+        <a href="#equipe-juridica"><span data-i="04">Jurídico</span></a>
+        <a href="#faca-parte"><span data-i="05">Faça parte</span></a>
+        <a href="#faq"><span data-i="06">Dúvidas</span></a>
+        <a href="#acolhimento"><span data-i="07">Acolhimento</span></a>
       </div>
 
       <div class="nav-cta">
-        <a href="#acolhimento" class="btn btn--calm">Fale com a gente</a>
+        <a href="#acolhimento" class="btn btn--calm" data-magnetic>Fale com a gente</a>
       </div>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </nav>
   </div>
+  <span class="scroll-progress" id="scrollProgress" aria-hidden="true"></span>
 </header>
 
 <!-- ============================ HERO ============================ -->
 <section class="hero" id="inicio">
-  <img class="hero-art" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <img class="hero-logo-fallback" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-inner">
-      <span class="pill"><span class="dot"></span>Associação civil sem fins lucrativos · Brasília/DF</span>
-      <h1>Cuidado, informação e <span class="hl">acolhimento</span> em cannabis medicinal</h1>
-      <p class="lead">A APOCAM é uma associação popular sem fins lucrativos que acolhe e orienta, de forma gratuita, pacientes e famílias que buscam o tratamento com cannabis medicinal. Nosso foco é facilitar o acesso à consulta médica, com prioridade para quem não tem condições de custeá-la. Encaminhamos a médicos e advogados parceiros, com base em evidências e no respeito à dignidade de cada pessoa.</p>
-      <div class="hero-actions">
-        <a href="#acolhimento" class="btn btn--primary">Buscar acolhimento</a>
-        <a href="#como-funciona" class="btn btn--light">Entender como funciona</a>
+      <span class="pill reveal-hero"><span class="dot"></span>Associação civil sem fins lucrativos · Brasília/DF</span>
+      <h1>
+        <span class="l"><span class="li">Cuidado, informação e</span></span>
+        <span class="l"><span class="li"><em class="hl">acolhimento</em> em</span></span>
+        <span class="l"><span class="li">cannabis medicinal</span></span>
+      </h1>
+      <p class="lead reveal-hero">A APOCAM é uma associação popular sem fins lucrativos que acolhe e orienta, de forma gratuita, pacientes e famílias que buscam o tratamento com cannabis medicinal. Nosso foco é facilitar o acesso à consulta médica, com prioridade para quem não tem condições de custeá-la. Encaminhamos a médicos e advogados parceiros, com base em evidências e no respeito à dignidade de cada pessoa.</p>
+      <div class="hero-actions reveal-hero">
+        <a href="#acolhimento" class="btn btn--primary" data-magnetic>Buscar acolhimento</a>
+        <a href="#como-funciona" class="btn btn--light" data-magnetic>Entender como funciona</a>
       </div>
-      <div class="hero-trust">
+      <div class="hero-trust reveal-hero">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>Atendimento humanizado</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>Baseado em evidências</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg>Linguagem ética e educativa</span>
       </div>
     </div>
   </div>
+  <a class="scroll-cue" href="#quem-somos" aria-label="Rolar para a próxima seção"><span></span></a>
 </section>
 
 <!-- ============================ QUEM SOMOS ============================ -->
 <section class="section" id="quem-somos">
-  <img class="watermark watermark--tr watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+  <img class="watermark watermark--tr" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Quem somos</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">01</i>Quem somos</span>
       <h2>Uma associação dedicada à saúde, à dignidade e à informação</h2>
       <p>A APOCAM é uma associação civil sem fins lucrativos, com sede em Brasília/DF. Nesta fase social, informativa e de orientação, promove saúde, qualidade de vida e justiça social por meio do uso medicinal da cannabis, guiada pela legalidade, pela ética e pelo controle social.</p>
     </div>
@@ -124,40 +136,56 @@
 </section>
 
 <!-- ============================ COMO FUNCIONA ============================ -->
-<section class="section" id="como-funciona">
-  <img class="watermark watermark--tr watermark--light" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+<section class="section section--deep" id="como-funciona">
+  <img class="watermark watermark--tr" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Como funciona</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">02</i>Como funciona</span>
       <h2>Do primeiro contato ao acompanhamento</h2>
       <p>Um caminho de acolhimento aberto a qualquer pessoa, sem exigência de laudo prévio nem de região específica. Nosso foco principal é facilitar o acesso à consulta médica, com prioridade para quem não tem condições financeiras de arcar com o atendimento.</p>
     </div>
 
-    <div class="steps">
-      <article class="step reveal">
-        <div class="num">1</div>
-        <h3>Acolhimento inicial</h3>
-        <p>Você entra em contato pelo WhatsApp ou pelo formulário do site e conversa com nossa equipe de acolhimento. É uma primeira conversa com escuta atenta e sem julgamento, para entender quem você é e como podemos ajudar.</p>
+    <div class="timeline" id="timeline">
+      <div class="tl-track" aria-hidden="true"><span class="tl-progress" id="tlProgress"></span></div>
+
+      <article class="tl-step">
+        <div class="num" aria-hidden="true">1</div>
+        <div class="tl-card">
+          <h3>Acolhimento inicial</h3>
+          <p>Você entra em contato pelo WhatsApp ou pelo formulário do site e conversa com nossa equipe de acolhimento. É uma primeira conversa com escuta atenta e sem julgamento, para entender quem você é e como podemos ajudar.</p>
+        </div>
       </article>
-      <article class="step reveal">
-        <div class="num">2</div>
-        <h3>Orientação</h3>
-        <p>Buscamos entender a sua necessidade e explicar, de forma clara e baseada em evidências, os caminhos possíveis para o acesso à cannabis medicinal. Esclarecemos as principais dúvidas sobre o processo médico e jurídico e indicamos o próximo passo mais adequado ao seu caso.</p>
+
+      <article class="tl-step">
+        <div class="num" aria-hidden="true">2</div>
+        <div class="tl-card">
+          <h3>Orientação</h3>
+          <p>Buscamos entender a sua necessidade e explicar, de forma clara e baseada em evidências, os caminhos possíveis para o acesso à cannabis medicinal. Esclarecemos as principais dúvidas sobre o processo médico e jurídico e indicamos o próximo passo mais adequado ao seu caso.</p>
+        </div>
       </article>
-      <article class="step reveal">
-        <div class="num">3</div>
-        <h3>Encaminhamento médico</h3>
-        <p>Nosso foco principal é viabilizar o acesso à consulta médica para quem não tem condições financeiras. Quem pode custear o atendimento é encaminhado diretamente aos médicos parceiros. Em todos os casos, a indicação é referencial e a responsabilidade terapêutica é do profissional.</p>
+
+      <article class="tl-step">
+        <div class="num" aria-hidden="true">3</div>
+        <div class="tl-card">
+          <h3>Encaminhamento médico</h3>
+          <p>Nosso foco principal é viabilizar o acesso à consulta médica para quem não tem condições financeiras. Quem pode custear o atendimento é encaminhado diretamente aos médicos parceiros. Em todos os casos, a indicação é referencial e a responsabilidade terapêutica é do profissional.</p>
+        </div>
       </article>
-      <article class="step reveal">
-        <div class="num">4</div>
-        <h3>Encaminhamento jurídico</h3>
-        <p>Contamos com uma rede de advogados parceiros que oferecem instrução jurídica sobre o caminho legal de acesso, esclarecendo direitos, documentos necessários e possibilidades. A orientação é educativa e transparente, sem garantir qualquer decisão judicial.</p>
+
+      <article class="tl-step">
+        <div class="num" aria-hidden="true">4</div>
+        <div class="tl-card">
+          <h3>Encaminhamento jurídico</h3>
+          <p>Contamos com uma rede de advogados parceiros que oferecem instrução jurídica sobre o caminho legal de acesso, esclarecendo direitos, documentos necessários e possibilidades. A orientação é educativa e transparente, sem garantir qualquer decisão judicial.</p>
+        </div>
       </article>
-      <article class="step step--full reveal">
-        <div class="num">5</div>
-        <h3>Acompanhamento social com assistente social</h3>
-        <p>Uma assistente social conduz todo esse processo, acolhendo e acompanhando o paciente e a família nas dimensões individual, familiar e coletiva. É um cuidado próximo, com escuta qualificada, orientação e apoio em cada etapa da jornada.</p>
+
+      <article class="tl-step">
+        <div class="num" aria-hidden="true">5</div>
+        <div class="tl-card">
+          <h3>Acompanhamento social com assistente social</h3>
+          <p>Uma assistente social conduz todo esse processo, acolhendo e acompanhando o paciente e a família nas dimensões individual, familiar e coletiva. É um cuidado próximo, com escuta qualificada, orientação e apoio em cada etapa da jornada.</p>
+        </div>
       </article>
     </div>
 
@@ -170,16 +198,17 @@
 
 <!-- ============================ MÉDICOS PARCEIROS ============================ -->
 <section class="section" id="medicos-parceiros">
-  <img class="watermark watermark--tr watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+  <img class="watermark watermark--tr" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Médicos parceiros</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">03</i>Médicos parceiros</span>
       <h2>Profissionais de saúde da nossa rede</h2>
       <p>A APOCAM mantém uma rede de médicos parceiros para facilitar o acesso à consulta de forma ética e informada. A indicação tem caráter referencial: a avaliação, a prescrição e o acompanhamento terapêutico são de responsabilidade exclusiva de cada profissional.</p>
     </div>
 
     <div class="parceiros-solo">
-      <article class="parceiro-card parceiro-card--wide reveal">
+      <article class="parceiro-card parceiro-card--wide reveal" data-tilt>
+        <span class="card-shine" aria-hidden="true"></span>
         <div class="parceiro-foto">
           <img src="assets/parceiros/dra-desiree-guarnieri.jpeg" alt="Dra. Desirée Danielle Guarnieri" loading="lazy" width="340" height="480">
         </div>
@@ -210,11 +239,11 @@
 </section>
 
 <!-- ============================ EQUIPE JURÍDICA ============================ -->
-<section class="section" id="equipe-juridica">
-  <img class="watermark watermark--bl watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+<section class="section section--alt" id="equipe-juridica">
+  <img class="watermark watermark--bl" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Equipe jurídica</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">04</i>Equipe jurídica</span>
       <h2>Advogados parceiros para orientar seus direitos</h2>
       <p>Nossa rede jurídica oferece instrução sobre os caminhos legais de acesso à cannabis medicinal (direitos, documentos e possibilidades) de forma educativa e transparente. A orientação tem caráter referencial e não garante decisões judiciais.</p>
     </div>
@@ -222,7 +251,8 @@
     <div class="juridico-bloco reveal">
       <div class="parceiros-sub"><h3>Jurídico Interno</h3><span class="cap">Eduardo e Henrique</span><span class="linha"></span></div>
       <div class="parceiros-grid">
-      <article class="parceiro-card reveal">
+      <article class="parceiro-card reveal" data-tilt>
+        <span class="card-shine" aria-hidden="true"></span>
         <div class="parceiro-foto">
           <img src="assets/parceiros/henrique-cesar-ramiro.jpeg" alt="Henrique César Ramiro de Sousa" loading="lazy" width="340" height="425">
         </div>
@@ -239,7 +269,8 @@
         </div>
       </article>
 
-      <article class="parceiro-card reveal">
+      <article class="parceiro-card reveal" data-tilt>
+        <span class="card-shine" aria-hidden="true"></span>
         <div class="parceiro-foto">
           <img src="assets/parceiros/eduardo-augusto-lopes.jpeg" alt="Eduardo Augusto da Silva Lopes" loading="lazy" width="340" height="425">
         </div>
@@ -259,7 +290,8 @@
     <div class="juridico-bloco juridico-bloco--externo reveal">
       <div class="parceiros-sub"><h3>Jurídica Externa</h3><span class="cap">Assessoria jurídica à APOCAM</span><span class="linha"></span></div>
       <div class="parceiros-solo">
-        <article class="parceiro-card parceiro-card--wide reveal">
+        <article class="parceiro-card parceiro-card--wide reveal" data-tilt>
+          <span class="card-shine" aria-hidden="true"></span>
           <div class="parceiro-foto">
             <img src="assets/parceiros/dra-tais-correa.jpeg" alt="Dra. Tais Correa" loading="lazy" width="340" height="480">
           </div>
@@ -287,10 +319,10 @@
 
 <!-- ============================ FAÇA PARTE ============================ -->
 <section class="section" id="faca-parte">
-  <img class="watermark watermark--bl watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+  <img class="watermark watermark--bl" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Faça parte</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">05</i>Faça parte</span>
       <h2>Três formas de caminhar com a APOCAM</h2>
       <p>Você pode participar da APOCAM de três formas: buscando acolhimento para você ou sua família, apoiando a associação como contribuinte ou doando seu tempo e conhecimento como voluntário. Para cada caminho, há um jeito de somar a esta rede.</p>
     </div>
@@ -304,7 +336,7 @@
           <li>Prioridade no acesso à consulta para quem não tem condições de custear</li>
           <li>Acompanhamento por assistente social e encaminhamento médico e jurídico referencial</li>
         </ul>
-        <a href="#acolhimento" class="btn btn--primary btn--block">Falar com a APOCAM</a>
+        <a href="#acolhimento" class="btn btn--primary btn--block" data-magnetic>Falar com a APOCAM</a>
       </article>
 
       <article class="card join-card reveal">
@@ -315,7 +347,7 @@
           <li>Participe das decisões e da vida associativa</li>
           <li>Acesso prioritário a benefícios em etapas futuras, quando forem legalmente possíveis</li>
         </ul>
-        <a href="#acolhimento" class="btn btn--ghost btn--block">Quero contribuir</a>
+        <a href="#acolhimento" class="btn btn--ghost btn--block" data-magnetic>Quero contribuir</a>
       </article>
 
       <article class="card join-card reveal">
@@ -326,23 +358,23 @@
           <li>Convite especial a médicos e demais profissionais de saúde</li>
           <li>Contribua com seu tempo ou conhecimento por saúde e justiça social</li>
         </ul>
-        <a href="#acolhimento" class="btn btn--ghost btn--block">Quero ser voluntário</a>
+        <a href="#acolhimento" class="btn btn--ghost btn--block" data-magnetic>Quero ser voluntário</a>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============================ FAQ ============================ -->
-<section class="section section--fria" id="faq">
-  <img class="watermark watermark--bl watermark--soft" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+<section class="section section--alt" id="faq">
+  <img class="watermark watermark--bl" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-head section-head--center reveal">
-      <span class="eyebrow">Dúvidas frequentes</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">06</i>Dúvidas frequentes</span>
       <h2>Perguntas e respostas</h2>
       <p>Reunimos aqui as dúvidas mais comuns de quem procura a APOCAM: como funciona o acolhimento, os encaminhamentos e o acesso à consulta médica. Se a sua pergunta não estiver na lista, fale com a gente.</p>
     </div>
 
-    <div class="faq">
+    <div class="faq reveal">
       <details>
         <summary>O que é a APOCAM? <span class="plus"></span></summary>
         <div class="faq-body"><p>A APOCAM (Associação Popular de Cannabis Medicinal) é uma associação civil sem fins lucrativos, com sede em Brasília/DF. Nesta fase, atua no campo social, informativo e de orientação, com foco em facilitar o acesso à consulta médica, especialmente para quem não tem condições financeiras. Oferece acolhimento gratuito e encaminha a profissionais parceiros.</p></div>
@@ -400,7 +432,7 @@
 <section class="section acolhimento" id="acolhimento">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Acolhimento</span>
+      <span class="eyebrow"><i class="sec-num" aria-hidden="true">07</i>Acolhimento</span>
       <h2>Estamos aqui para ouvir você</h2>
     </div>
 
@@ -409,7 +441,7 @@
         <p class="lead">Seja para buscar orientação, contribuir ou se voluntariar, este é um espaço seguro e gratuito. Fale diretamente conosco pelo WhatsApp ou preencha o formulário: nossa equipe, incluindo a assistente social, responde com atenção e cuidado.</p>
 
         <!-- WHATSAPP: substituir o número 5561000000000 pelo número oficial da APOCAM (formato 55 + DDD + número) -->
-        <a class="btn btn--whats whats-cta" href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener">
+        <a class="btn btn--whats whats-cta" href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener" data-magnetic>
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
           Falar agora pelo WhatsApp
         </a>
@@ -481,7 +513,7 @@
 
 <!-- ============================ FOOTER ============================ -->
 <footer class="site-footer">
-  <img class="footer-watermark" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true">
+  <img class="footer-watermark" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -541,6 +573,12 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<!-- Bibliotecas (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="logo-data.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
