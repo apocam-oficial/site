@@ -202,9 +202,10 @@ h1,h2,h3,h4{font-family:var(--font-display);color:var(--azul);line-height:1.12;f
   position:absolute;left:0;bottom:-1px;height:2.5px;width:100%;
   background:var(--grad-tri);transform-origin:0 50%;transform:scaleX(0);
 }
-.nav{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);transition:height .35s var(--ease)}
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;height:var(--header-h);transition:height .35s var(--ease)}
 .site-header.scrolled .nav{height:62px}
 .brand{display:flex;align-items:center;flex:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.brand-name{display:none}
 .brand .brand-logo{height:52px;width:auto;transition:height .35s var(--ease),transform .4s var(--ease)}
 .site-header.scrolled .brand-logo{height:42px}
 .brand:hover .brand-logo{transform:scale(1.06) rotate(-2deg)}
@@ -682,7 +683,19 @@ html.anim.no-gsap .reveal-hero{opacity:1;transition:opacity .8s var(--ease)}
     width:min(62vw,46svh);
     opacity:.92;
   }
-  .site-header:not(.scrolled) .brand{opacity:0;transform:scale(.9);pointer-events:none}
+  /* Wordmark "APOCAM" no topo (Montserrat, cores das folhas da logo,
+     centralizado no header) → vira a logo ao rolar */
+  .brand-name{
+    display:block;position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    font-family:"Cinzel",var(--font-display),serif;font-weight:800;font-size:1.3rem;line-height:1;
+    letter-spacing:.22em;margin-right:-.22em;white-space:nowrap;
+    color:var(--azul);
+    transition:opacity .4s var(--ease),letter-spacing .5s var(--ease),transform .4s var(--ease);
+  }
+  .brand .brand-logo{transition:opacity .4s var(--ease),transform .5s var(--ease-exp),height .35s var(--ease)}
+  .site-header:not(.scrolled) .brand .brand-logo{opacity:0;transform:scale(.72) rotate(-10deg)}
+  .site-header.scrolled .brand-name{opacity:0;letter-spacing:.6em;transform:translate(-50%,-50%) translateY(-7px)}
 }
 
 /* ---------- Movimento reduzido ---------- */
