@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APOCAM | Cuidado, informação e acolhimento em cannabis medicinal</title>
+<meta name="description" content="A APOCAM é uma associação popular sem fins lucrativos que acolhe gratuitamente pacientes e famílias, orienta com base em evidências e facilita o acesso à consulta médica com cannabis medicinal. Brasília/DF.">
+<meta name="author" content="APOCAM">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#04181c">
+
+<!-- Favicon (símbolo da APOCAM) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- Open Graph -->
+<meta property="og:title" content="APOCAM | Cuidado, informação e acolhimento em cannabis medicinal">
+<meta property="og:description" content="Acolhimento gratuito e humanizado, orientação baseada em evidências e encaminhamento referencial a médicos e advogados parceiros. Associação sem fins lucrativos em Brasília/DF.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- ===== Efeitos adicionais da versão jornada 3 · 447 logo · 375 mesh · 384 coverflow · 362 shared-element · 406 dot grid ===== -->
+<style id="jvStyle">
+/* Hero: engine de partículas 2D (variação 447) usa o #heroCanvas */
+.hero .hero-canvas{display:block;z-index:1}
+.hero .hero-logo-fallback{display:none}
+.hero .logo-hit{display:block;touch-action:pan-y}
+
+/* 375 · wordmark do rodapé — sem efeito, apenas o nome */
+.jv-mesh{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:clamp(40px,7vh,80px)}
+.jv-mesh .footer-word{margin-bottom:0;color:transparent;-webkit-text-stroke-color:rgba(237,233,222,.35)}
+/* mapa no rodapé, em largura total, abaixo do bloco de contato */
+.footer-mapa{margin-top:clamp(30px,4vh,48px)}
+.footer-mapa iframe{height:clamp(230px,32vh,320px)}
+
+/* 406 · fundo generativo (ondas no dot grid) — Acolhimento, Pilares e Participar */
+#acolhimento,#participar{position:relative}
+#acolhimento>.container,#participar>.container{position:relative;z-index:1}
+.jv-dot{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+#participar>.jv-dot{opacity:.42}
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#manifesto">Pular para o conteúdo</a>
+
+<!-- Atmosfera: grão + aurora de fundo (camadas lentas de parallax) -->
+<div class="grain" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true">
+  <span class="aurora-blob aurora-blob--a"></span>
+  <span class="aurora-blob aurora-blob--b"></span>
+  <span class="aurora-blob aurora-blob--c"></span>
+</div>
+
+<!-- Trilho de capítulos (desktop) -->
+<nav class="rail" id="rail" aria-label="Capítulos da página">
+  <a href="#manifesto" data-rail="manifesto"><i>01</i><span>Quem somos</span></a>
+  <a href="#como-funciona" data-rail="como-funciona"><i>02</i><span>Como funciona</span></a>
+  <a href="#parceiros" data-rail="parceiros"><i>03</i><span>Rede parceira</span></a>
+  <a href="#faq" data-rail="faq"><i>04</i><span>Dúvidas</span></a>
+  <a href="#participar" data-rail="participar"><i>05</i><span>Participar</span></a>
+  <a href="#acolhimento" data-rail="acolhimento"><i>06</i><span>Acolhimento</span></a>
+</nav>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#inicio" class="brand" aria-label="APOCAM, página inicial">
+      <img class="brand-logo" src="assets/logo-apocam-branco.png" width="46" height="37" alt="">
+      <span class="brand-word">APOCAM</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+      <a href="#manifesto"><span data-i="01">Quem somos</span></a>
+      <a href="#como-funciona"><span data-i="02">Como funciona</span></a>
+      <a href="#parceiros"><span data-i="03">Rede parceira</span></a>
+      <a href="#faq"><span data-i="04">Dúvidas</span></a>
+      <a href="#participar"><span data-i="05">Participar</span></a>
+      <a href="#acolhimento"><span data-i="06">Acolhimento</span></a>
+    </nav>
+
+    <div class="header-right">
+      <!-- WHATSAPP: substituir 5561000000000 pelo número oficial da APOCAM (formato 55 + DDD + número) -->
+      <a class="btn btn--whats btn--sm" href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener" data-magnetic>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+        WhatsApp
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="inicio">
+  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="logo-hit" id="logoHit" aria-hidden="true" title="Arraste para girar"></div>
+  <img class="hero-logo-fallback" src="assets/logo-apocam-mark.png" alt="" aria-hidden="true" loading="lazy">
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="container hero-container">
+    <div class="hero-inner">
+      <span class="pill reveal-hero"><span class="dot"></span>Associação popular sem fins lucrativos · Brasília/DF</span>
+      <h1>
+        <span class="l"><span class="li">Cuidado, informação e</span></span>
+        <span class="l"><span class="li"><em class="hl">acolhimento</em> em</span></span>
+        <span class="l"><span class="li">cannabis medicinal</span></span>
+      </h1>
+      <p class="lead reveal-hero">A APOCAM é uma associação popular sem fins lucrativos que acolhe e orienta, de forma gratuita, pacientes e famílias que buscam o tratamento com cannabis medicinal. Nosso foco é facilitar o acesso à consulta médica, com prioridade para quem não tem condições de custeá-la. Encaminhamos a médicos e advogados parceiros, com base em evidências e no respeito à dignidade de cada pessoa.</p>
+      <div class="hero-actions reveal-hero">
+        <!-- WHATSAPP: substituir 5561000000000 pelo número oficial da APOCAM -->
+        <a href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." class="btn btn--whats" target="_blank" rel="noopener" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+          Falar agora pelo WhatsApp
+        </a>
+        <a href="#como-funciona" class="btn btn--ghost" data-magnetic>Entender como funciona</a>
+      </div>
+      <div class="hero-trust reveal-hero">
+        <span>Acolhimento gratuito</span>
+        <span>Baseado em evidências</span>
+        <span>Ética e legalidade</span>
+      </div>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#manifesto" aria-label="Rolar para a próxima seção">
+    <span class="scroll-cue-line"></span>
+    <span class="scroll-cue-txt">role para começar</span>
+  </a>
+</section>
+
+<!-- Faixa marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Acolhimento gratuito e humanizado</span><i>✳</i>
+    <span>Prioridade para quem não pode pagar</span><i>✳</i>
+    <span>Orientação baseada em evidências</span><i>✳</i>
+    <span>Ética, legalidade e controle social</span><i>✳</i>
+    <span>Encaminhamento referencial</span><i>✳</i>
+    <span>Acolhimento gratuito e humanizado</span><i>✳</i>
+    <span>Prioridade para quem não pode pagar</span><i>✳</i>
+    <span>Orientação baseada em evidências</span><i>✳</i>
+    <span>Ética, legalidade e controle social</span><i>✳</i>
+    <span>Encaminhamento referencial</span><i>✳</i>
+  </div>
+</div>
+
+<!-- ============================ 01 · MANIFESTO ============================ -->
+<section class="chapter" id="manifesto">
+  <span class="ghost-num" aria-hidden="true">01</span>
+  <div class="container">
+    <span class="eyebrow reveal">01 · Quem somos</span>
+    <p class="manifesto-frase" id="manifestoFrase">Somos uma <em>rede popular</em> de apoio em cannabis medicinal. Acolhemos com escuta humanizada, orientamos com <em>evidências científicas</em> e caminhamos com você pelos <em>caminhos legais</em>, porque saúde é direito, não privilégio.</p>
+    <div class="manifesto-notas reveal">
+      <p>A APOCAM, Associação Popular de Cannabis Medicinal, é uma associação civil sem fins lucrativos com sede em Brasília/DF. Nesta fase social, informativa e de orientação, nosso foco é facilitar o acesso à consulta médica, especialmente para quem não tem condições financeiras de custeá-la.</p>
+      <p>Toda a nossa atuação é guiada pela legalidade, pela ética, pelo controle social e pelo apoio à pesquisa científica. Não prestamos serviços médicos, não comercializamos produtos e não prometemos resultados: acolhemos, informamos e encaminhamos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 02 · COMO FUNCIONA (cena pinada) ============================ -->
+<section class="chapter chapter--pin" id="como-funciona">
+  <span class="ghost-num" aria-hidden="true">02</span>
+  <div class="container">
+    <div class="passos-pin" id="passosPin">
+      <div class="passos-left">
+        <span class="eyebrow reveal">02 · Como funciona</span>
+        <h2 class="reveal">Um caminho de cuidado, passo a passo</h2>
+        <p class="chapter-sub reveal">Aberto a qualquer pessoa, sem exigência de laudo prévio nem de região específica.</p>
+        <div class="passo-contador" id="passoContador" aria-hidden="true">
+          <span id="passoNum">01</span><i>/ 04</i>
+          <div class="passo-ticks" id="passoTicks"><b class="on"></b><b></b><b></b><b></b></div>
+        </div>
+      </div>
+
+      <div class="passos-deck" id="passosDeck">
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">01</span>
+          <h3>Acolhimento inicial</h3>
+          <p>Você entra em contato pelo WhatsApp ou pelo formulário. Do outro lado, uma escuta humanizada e sem julgamento, queremos entender quem você é e como a APOCAM pode ajudar.</p>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">02</span>
+          <h3>Orientação informativa</h3>
+          <p>Explicamos com clareza, e com base em evidências, os caminhos possíveis de acesso à cannabis medicinal, médicos e jurídicos, e esclarecemos as principais dúvidas em linguagem acessível.</p>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">03</span>
+          <h3>Encaminhamento referencial</h3>
+          <p>Indicamos médicos e advogados parceiros, sem promessa de resultado. Avaliação, prescrição, acompanhamento terapêutico e conduta jurídica são responsabilidade exclusiva desses profissionais.</p>
+        </article>
+        <article class="passo reveal">
+          <span class="passo-num" aria-hidden="true">04</span>
+          <h3>Acompanhamento social</h3>
+          <p>Uma assistente social acompanha os casos que precisam de apoio no acesso à consulta, sobretudo de quem não pode arcar com o atendimento. Cuidado próximo, orientado para dignidade e justiça social.</p>
+        </article>
+      </div>
+    </div>
+
+    <p class="nota-legal reveal">A APOCAM não promete resultados terapêuticos nem garante decisões judiciais ou habeas corpus. Cada caso é único e conduzido com responsabilidade e ética.</p>
+  </div>
+</section>
+
+<!-- ============================ 03 · REDE DE PARCEIROS ============================ -->
+<section class="chapter" id="parceiros">
+  <span class="ghost-num" aria-hidden="true">03</span>
+  <div class="container">
+    <div class="chapter-head reveal">
+      <span class="eyebrow">03 · Rede de profissionais parceiros</span>
+      <h2>O ecossistema humano da APOCAM</h2>
+      <p class="chapter-sub">Médicos e advogados parceiros que caminham conosco. A indicação é sempre referencial: quem conduz cada caso é o profissional, com autonomia e responsabilidade próprias.</p>
+    </div>
+
+    <div class="grupo reveal">
+      <div class="grupo-label"><h3>Médicos parceiros</h3><span class="grupo-linha"></span></div>
+    </div>
+
+    <article class="parceiro reveal">
+      <div class="parceiro-foto">
+        <div class="foto-mask"><img src="assets/parceiros/dra-desiree-guarnieri.jpeg" alt="Dra. Desirée Danielle Guarnieri" loading="lazy" width="340" height="480"></div>
+      </div>
+      <div class="parceiro-info">
+        <h4>Dra. Desirée Danielle Guarnieri</h4>
+        <span class="parceiro-reg">Médica psiquiatra · CRM-SC 38.452</span>
+        <p class="parceiro-bio">Psiquiatra com diploma revalidado na Espanha e pesquisadora de cannabis medicinal com atuação nacional e internacional. Certificada pela WeCann, USP e KayaMind (Espanha) e membro da IACM (International Association for Cannabinoid Medicines), com habilitação para prescrição em 27 países. Especialista em laudos e perícias judiciais, com formação complementar em cultivo e em Boas Práticas em pesquisa animal pela Fiocruz.</p>
+        <div class="parceiro-tags"><span>Fibromialgia</span><span>Dores crônicas</span><span>Dores neuropáticas</span><span>Autismo</span></div>
+        <p class="parceiro-nota">Atendimento presencial em Balneário Camboriú/SC e on-line para todo o Brasil e Europa.</p>
+        <div class="parceiro-contatos">
+          <a href="mailto:dra.desireeguarnieri@gmail.com">dra.desireeguarnieri@gmail.com</a>
+          <a href="https://wa.me/5547999778775" target="_blank" rel="noopener">(47) 99977-8775</a>
+        </div>
+      </div>
+    </article>
+
+    <p class="frase-guia reveal">Indicação referencial. A avaliação, prescrição e acompanhamento terapêutico são de responsabilidade exclusiva do profissional.</p>
+
+    <div class="grupo grupo--espaco reveal">
+      <div class="grupo-label"><h3>Advogados parceiros</h3><span class="grupo-linha"></span></div>
+      <p class="grupo-sub">Assessoria jurídica interna</p>
+    </div>
+
+    <article class="parceiro parceiro--invert reveal">
+      <div class="parceiro-foto">
+        <div class="foto-mask"><img src="assets/parceiros/henrique-cesar-ramiro.jpeg" alt="Henrique César Ramiro de Sousa" loading="lazy" width="340" height="425"></div>
+      </div>
+      <div class="parceiro-info">
+        <h4>Henrique César Ramiro de Sousa</h4>
+        <span class="parceiro-reg">Advogado · OAB/DF 82.264 · Jurídico interno</span>
+        <p class="parceiro-bio">Pós-graduado em Direito Tributário e com MBA em andamento em Controladoria, Estratégia Financeira e Fiscal pela PUCRS. Orienta sobre os caminhos legais de acesso à cannabis medicinal, direitos, documentos e possibilidades, de forma educativa e transparente, sem garantia de decisões judiciais.</p>
+        <div class="parceiro-tags"><span>Direito Tributário</span><span>Controladoria</span></div>
+        <div class="parceiro-contatos">
+          <a href="https://wa.me/5561992633660" target="_blank" rel="noopener">(61) 99263-3660</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="parceiro reveal">
+      <div class="parceiro-foto">
+        <div class="foto-mask"><img src="assets/parceiros/eduardo-augusto-lopes.jpeg" alt="Eduardo Augusto da Silva Lopes" loading="lazy" width="340" height="425"></div>
+      </div>
+      <div class="parceiro-info">
+        <h4>Eduardo Augusto da Silva Lopes</h4>
+        <span class="parceiro-reg">Advogado · OAB/DF 69.237 · Jurídico interno</span>
+        <p class="parceiro-bio">Advogado inscrito na OAB/DF, graduado em Direito pelo IESB (2020). Integra a rede jurídica parceira da APOCAM, orientando sobre os caminhos legais de acesso à cannabis medicinal, direitos, documentos e possibilidades, de forma educativa e transparente, sem garantia de decisões judiciais.</p>
+        <div class="parceiro-contatos">
+          <a href="mailto:dulopes.jus@gmail.com">dulopes.jus@gmail.com</a>
+          <a href="https://wa.me/5561998219453" target="_blank" rel="noopener">(61) 99821-9453</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="grupo grupo--espaco jv-subgrupo reveal">
+      <p class="grupo-sub">Assessoria jurídica externa</p>
+    </div>
+
+    <article class="parceiro parceiro--invert reveal">
+      <div class="parceiro-foto">
+        <div class="foto-mask"><img src="assets/parceiros/dra-tais-correa.jpeg" alt="Dra. Tais Correa" loading="lazy" width="340" height="480"></div>
+      </div>
+      <div class="parceiro-info">
+        <h4>Dra. Tais Correa</h4>
+        <span class="parceiro-reg">Advogada · Direito e Saúde</span>
+        <p class="parceiro-bio">Filha e irmã de médicos, foi dessa vivência que nasceu sua paixão por unir Direito e Saúde, construindo uma atuação sensível, técnica e estratégica. Formada em Direito pela Universidade Presbiteriana Mackenzie (2014), atua há mais de 8 anos exclusivamente na área da saúde, com ênfase em causas complexas e humanizadas. Presta assessoria jurídica à APOCAM.</p>
+        <div class="parceiro-tags"><span>Direito e Saúde</span><span>Causas complexas</span><span>Atuação humanizada</span></div>
+        <div class="parceiro-contatos">
+          <a href="#acolhimento">Contato pela APOCAM</a>
+        </div>
+      </div>
+    </article>
+
+    <p class="frase-guia reveal">Orientação educativa e referencial. A APOCAM não garante decisões judiciais nem concessão de habeas corpus; isso depende exclusivamente do Judiciário.</p>
+  </div>
+</section>
+
+<!-- ============================ 04 · FAQ ============================ -->
+<section class="chapter" id="faq">
+  <span class="ghost-num" aria-hidden="true">04</span>
+  <div class="container container--narrow">
+    <div class="chapter-head reveal">
+      <span class="eyebrow">04 · Perguntas frequentes</span>
+      <h2>O que você precisa saber, sem rodeios</h2>
+    </div>
+
+    <div class="faq reveal">
+      <details>
+        <summary>O que é a APOCAM?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>A APOCAM (Associação Popular de Cannabis Medicinal) é uma associação civil sem fins lucrativos, com sede em Brasília/DF. Nesta fase, atua no campo social, informativo e de orientação, com foco em facilitar o acesso à consulta médica, especialmente para quem não tem condições financeiras. Oferece acolhimento gratuito e encaminha a profissionais parceiros.</p></div>
+      </details>
+      <details>
+        <summary>A APOCAM fornece ou vende medicamento?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Não. A APOCAM está em uma fase social e informativa, voltada ao acolhimento, à orientação e à educação. Não distribui, não fornece nem comercializa produtos ou medicamentos. Nosso papel é acolher as pessoas e ajudá-las a encontrar o caminho de acesso à consulta médica.</p></div>
+      </details>
+      <details>
+        <summary>Preciso ter laudo prévio para ser acolhido?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Não. O acolhimento é aberto a qualquer pessoa que procurar a associação, sem exigência de laudo prévio ou de região específica. Basta entrar em contato pelo WhatsApp ou pelo formulário da seção de Acolhimento para iniciar a conversa.</p></div>
+      </details>
+      <details>
+        <summary>Como funciona o encaminhamento a médicos parceiros?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Quando faz sentido para o seu caso, indicamos médicos parceiros de forma referencial. A APOCAM não presta serviços médicos: a avaliação, a prescrição e o acompanhamento terapêutico são de responsabilidade exclusiva do profissional. Quem tem condições de pagar é encaminhado diretamente a esses médicos; quem não tem é apoiado no acesso pela nossa assistente social.</p></div>
+      </details>
+      <details>
+        <summary>Como funciona o encaminhamento a advogados parceiros?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Indicamos advogados parceiros que oferecem orientação jurídica sobre o caminho legal de acesso à cannabis medicinal, direitos, documentos e possibilidades. É uma orientação educativa e transparente: não garantimos qualquer decisão judicial nem a concessão de habeas corpus, pois isso depende do Judiciário.</p></div>
+      </details>
+      <details>
+        <summary>O acolhimento é pago?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Não, o acolhimento na APOCAM é gratuito. Nosso foco principal é viabilizar o acesso à consulta médica para pessoas que não têm condições de arcar com o atendimento, com acompanhamento da nossa assistente social. Quem tem condições de pagar é encaminhado diretamente aos médicos parceiros. A avaliação é feita caso a caso, com respeito e sem constrangimento.</p></div>
+      </details>
+      <details>
+        <summary>A APOCAM ajuda com cultivo de cannabis?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Não. Qualquer cultivo, plantio, armazenamento ou manipulação depende de autorização judicial específica e de deliberação interna da associação. Nesta fase, a APOCAM atua apenas nos campos social, educativo e de orientação.</p></div>
+      </details>
+      <details>
+        <summary>Como funciona o acesso à cannabis medicinal no Brasil?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>No Brasil, o acesso para fins terapêuticos ocorre mediante prescrição de profissional de saúde habilitado e, conforme o caso, por autorização da Anvisa ou por via judicial. A APOCAM orienta sobre esses caminhos de forma educativa e encaminha a médicos e advogados parceiros, sem garantir resultados ou decisões.</p></div>
+      </details>
+      <details>
+        <summary>A APOCAM garante cura ou resultados terapêuticos?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Não. A ciência segue investigando o uso de canabinoides em diversas condições de saúde, e as evidências variam conforme o caso. Os resultados não são garantidos e podem mudar de pessoa para pessoa. Por isso, o acompanhamento de um profissional de saúde é essencial, e a APOCAM não promete cura nem resultados terapêuticos.</p></div>
+      </details>
+      <details>
+        <summary>A APOCAM garante habeas corpus ou decisões judiciais?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Não, e desconfie de quem prometer isso. Nenhuma associação ou advogado pode garantir o resultado de um processo. Os advogados parceiros orientam sobre direitos, documentos e possibilidades, incluindo pedidos de habeas corpus quando cabíveis, mas a decisão é sempre e exclusivamente do Poder Judiciário.</p></div>
+      </details>
+      <details>
+        <summary>Como posso contribuir financeiramente ou ser voluntário?<span class="plus" aria-hidden="true"></span></summary>
+        <div class="faq-body"><p>Você pode contribuir com apoio financeiro, que sustenta o acolhimento gratuito e a rede de apoio social, ou com trabalho voluntário. Profissionais de saúde, advogados e pessoas de todas as áreas são muito bem-vindos. Fale com a gente pela seção de Acolhimento para conhecer as formas de participar.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 05 · COMO PARTICIPAR ============================ -->
+<section class="chapter" id="participar">
+  <canvas class="jv-dot" aria-hidden="true"></canvas>
+  <span class="ghost-num" aria-hidden="true">05</span>
+  <div class="container">
+    <div class="chapter-head reveal">
+      <span class="eyebrow">05 · Como participar</span>
+      <h2>Três formas de caminhar com a gente</h2>
+    </div>
+
+    <div class="caminhos">
+      <article class="caminho reveal">
+        <span class="caminho-num" aria-hidden="true">a.</span>
+        <h3>Buscar acolhimento</h3>
+        <p>Qualquer pessoa pode entrar em contato, sem exigência de laudo prévio nem de região específica. A conversa começa com escuta, não com burocracia.</p>
+        <a href="#acolhimento" class="link-cta">Quero ser acolhido<i aria-hidden="true">→</i></a>
+      </article>
+      <article class="caminho reveal">
+        <span class="caminho-num" aria-hidden="true">b.</span>
+        <h3>Apoiar financeiramente</h3>
+        <p>As contribuições sustentam o acolhimento gratuito e a rede de apoio social, inclusive o acesso à consulta para quem não pode pagar.</p>
+        <a href="#acolhimento" class="link-cta">Apoiar a APOCAM<i aria-hidden="true">→</i></a>
+      </article>
+      <article class="caminho reveal">
+        <span class="caminho-num" aria-hidden="true">c.</span>
+        <h3>Ser voluntário</h3>
+        <p>Profissionais de saúde, advogados e pessoas de todas as áreas podem somar com tempo e conhecimento. Toda mão estendida amplia a rede.</p>
+        <a href="#acolhimento" class="link-cta">Quero ser voluntário<i aria-hidden="true">→</i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 06 · ACOLHIMENTO / CONTATO ============================ -->
+<section class="chapter chapter--fim" id="acolhimento">
+  <canvas class="jv-dot" id="jvDot" aria-hidden="true"></canvas>
+  <span class="ghost-num" aria-hidden="true">06</span>
+  <div class="container">
+    <div class="chapter-head reveal">
+      <span class="eyebrow">06 · Contato e localização</span>
+      <h2>A porta está aberta</h2>
+      <p class="chapter-sub">Espaço seguro e gratuito, com escuta humanizada e sem julgamento. Conte como podemos te acolher: seja para orientação inicial ou para acesso à consulta médica.</p>
+    </div>
+
+    <div class="contato-grid">
+      <div class="contato-aside reveal">
+        <!-- WHATSAPP: substituir 5561000000000 pelo número oficial da APOCAM -->
+        <a class="whats-hero" href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c2 .8 2 .5 2.4.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+          <span><b>Falar agora pelo WhatsApp</b><small>resposta com atenção e cuidado</small></span>
+          <i aria-hidden="true">→</i>
+        </a>
+
+        <div class="contato-bloco">
+          <h4>Nossa sede</h4>
+          <p>SCES Trecho 2, Lote 32, Pier 21, Loja R60C<br>Asa Sul, Brasília/DF, CEP 70.200-002</p>
+        </div>
+
+        <div class="contato-bloco">
+          <h4>Como atendemos</h4>
+          <p>Escuta humanizada e sem julgamento, com prioridade para quem não tem condições de custear a consulta. O encaminhamento a médicos e advogados parceiros é referencial, e a assistente social acompanha o paciente e a família.</p>
+        </div>
+
+      </div>
+
+      <!-- FORMULÁRIO DE ACOLHIMENTO -->
+      <div class="form-card reveal">
+        <h3>Cadastro de acolhimento</h3>
+        <p class="form-sub">Retornaremos pelo canal que você preferir. Você decide o quanto quer compartilhar.</p>
+
+        <form id="acolhimentoForm" action="https://api.web3forms.com/submit" method="POST">
+          <!-- WEB3FORMS: gere uma chave gratuita em https://web3forms.com (basta informar o e-mail que receberá os contatos) e cole abaixo -->
+          <input type="hidden" name="access_key" value="SUA-CHAVE-WEB3FORMS-AQUI">
+          <input type="hidden" name="subject" value="Novo contato de acolhimento - Site APOCAM">
+          <input type="hidden" name="from_name" value="Site APOCAM">
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+          <div class="field">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" required placeholder="Como podemos te chamar">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="whatsapp">WhatsApp ou telefone</label>
+              <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
+            </div>
+            <div class="field">
+              <label for="cidade">Cidade / UF</label>
+              <input type="text" id="cidade" name="cidade" placeholder="Sua cidade e estado">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">E-mail <span class="opt">(opcional)</span></label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com">
+          </div>
+          <div class="field">
+            <label for="mensagem">Como podemos te acolher?</label>
+            <textarea id="mensagem" name="mensagem" required placeholder="Conte um pouco sobre o que você procura."></textarea>
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consentimento" required>
+            <label for="consent">Autorizo a APOCAM a entrar em contato comigo sobre o meu acolhimento. Meus dados serão tratados com sigilo, conforme a Lei Geral de Proteção de Dados (LGPD).</label>
+          </div>
+
+          <button type="submit" class="btn btn--whats btn--block">Enviar com segurança</button>
+          <div class="form-feedback" id="formFeedback"></div>
+          <p class="form-note">Espaço de acolhimento gratuito. Suas informações são tratadas com sigilo e respeito à sua privacidade.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="jv-mesh" aria-hidden="true">
+      <p class="footer-word">APOCAM</p>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/logo-apocam-branco.png" width="72" height="58" alt="APOCAM - Associação Popular de Cannabis Medicinal">
+        <p>Associação Popular de Cannabis Medicinal: acolhimento gratuito, orientação baseada em evidências e encaminhamento referencial, com prioridade para quem não pode custear a consulta. Brasília/DF.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/5561000000000" target="_blank" rel="noopener" aria-label="WhatsApp da APOCAM">WhatsApp</a>
+          <a href="https://instagram.com/apocam" target="_blank" rel="noopener" aria-label="Instagram da APOCAM">Instagram</a>
+          <a href="mailto:medicina.apocam@gmail.com" aria-label="E-mail da APOCAM">E-mail</a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Links rápidos">
+        <h5>Navegação</h5>
+        <a href="#manifesto">Quem somos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#parceiros">Profissionais parceiros</a>
+        <a href="#faq">Dúvidas frequentes</a>
+        <a href="#participar">Participar</a>
+        <a href="#acolhimento">Acolhimento</a>
+      </nav>
+
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <a href="mailto:medicina.apocam@gmail.com">medicina.apocam@gmail.com</a>
+        <!-- WHATSAPP: substituir 5561000000000 pelo número oficial da APOCAM -->
+        <a href="https://wa.me/5561000000000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <p>SCES Trecho 2, Lote 32, Pier 21, Loja R60C<br>Asa Sul, Brasília/DF, CEP 70.200-002</p>
+      </div>
+    </div>
+
+    <div class="contato-mapa footer-mapa">
+      <iframe
+        title="Localização da APOCAM: Pier 21, Asa Sul, Brasília/DF"
+        src="https://maps.google.com/maps?q=Pier%2021%20SCES%20Trecho%202%20Lote%2032%2C%20Asa%20Sul%2C%20Bras%C3%ADlia%20-%20DF%2C%2070200-002&z=16&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+
+    <div class="footer-legal">
+      <h5>Avisos legais</h5>
+      <p>A APOCAM é uma associação civil sem fins lucrativos, em fase social, informativa e de orientação. A APOCAM <strong>não presta serviços médicos</strong>; <strong>não distribui, não fornece e não comercializa</strong> produtos ou medicamentos à base de cannabis; <strong>não promete resultados terapêuticos nem cura</strong>; e <strong>não garante decisões judiciais nem concessão de habeas corpus</strong>. Toda a sua atuação é orientativa, educativa e referencial.</p>
+      <p>As indicações de médicos e advogados parceiros têm caráter exclusivamente referencial: a avaliação, a prescrição e o acompanhamento terapêutico são de responsabilidade exclusiva dos profissionais de saúde, e a conduta jurídica é de responsabilidade exclusiva dos advogados, decisões judiciais dependem unicamente do Poder Judiciário. Qualquer cultivo, plantio, armazenamento ou manipulação de cannabis depende de autorização judicial específica e de deliberação interna da associação. O acolhimento é gratuito e aberto, sem exigência de laudo prévio nem de região específica, com prioridade de acesso à consulta médica para quem não tem condições financeiras de custeá-la.</p>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 APOCAM. Todos os direitos reservados.</span>
+      <span>CNPJ 65.932.384/0001-26</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Bibliotecas (CDN) -->
+<!-- Three.js removido nesta página: a logo do hero usa a engine de partículas 2D (variação 447 "Desenrolar da casca"). -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="logo-data.js" defer></script>
+<script src="script.js" defer></script>
+
+<!-- ===== Efeitos adicionais (447 · 375 · 384 · 362 · 406), escopo exclusivo desta página ===== -->
+<script id="jvScript">
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  function onReady(fn){
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+  function whenVisible(el, start, stop){
+    if (!("IntersectionObserver" in window)){ start(); return; }
+    new IntersectionObserver(function(ents){
+      ents.forEach(function(en){ en.isIntersecting ? start() : (stop && stop()); });
+    }, { rootMargin: "120px" }).observe(el);
+  }
+  function fitCanvas(cv, w, h){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.max(1, Math.round(w * dpr));
+    cv.height = Math.max(1, Math.round(h * dpr));
+    return dpr;
+  }
+
+  /* ============================================================
+     1) HERO · logo 447 "Desenrolar da casca"
+        globo embrulhado (arrastável) que desenrola na logo no hover
+     ============================================================ */
+  function liftColor(r,g,b){
+    var mx=Math.max(r,g,b),mn=Math.min(r,g,b),d=mx-mn,l=(mx+mn)/2,h=0;
+    var sat=d===0?0:d/(1-Math.abs(2*l-1));
+    if(d!==0){if(mx===r)h=((g-b)/d)%6;else if(mx===g)h=(b-r)/d+2;else h=(r-g)/d+4;h*=60;if(h<0)h+=360;}
+    l=Math.max(l,.42);sat=Math.max(sat,.4);
+    var c=(1-Math.abs(2*l-1))*sat,x=c*(1-Math.abs(((h/60)%2)-1)),m=l-c/2,rr=0,gg=0,bb=0;
+    if(h<60){rr=c;gg=x}else if(h<120){rr=x;gg=c}else if(h<180){gg=c;bb=x}
+    else if(h<240){gg=x;bb=c}else if(h<300){rr=x;bb=c}else{rr=c;bb=x}
+    return "rgb("+Math.round((rr+m)*255)+","+Math.round((gg+m)*255)+","+Math.round((bb+m)*255)+")";
+  }
+  function easeIO(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2}
+
+  function initHero(){
+    var hero = document.querySelector(".hero");
+    var canvas = document.getElementById("heroCanvas");
+    var hit = document.getElementById("logoHit");
+    var LOGO = (typeof window.APOCAM_LOGO_URI === "string" && window.APOCAM_LOGO_URI.indexOf("data:image") === 0) ? window.APOCAM_LOGO_URI : null;
+    if (!hero || !canvas || !LOGO) { if (hero) hero.classList.add("no-webgl"); return; }
+
+    var img = new Image();
+    img.onerror = function(){ hero.classList.add("no-webgl"); };
+    img.onload = function(){ try { build(img); } catch(e){ hero.classList.add("no-webgl"); } };
+    img.src = LOGO;
+
+    function build(image){
+      var ctx = canvas.getContext("2d");
+      hero.classList.remove("no-webgl");
+
+      /* amostra os pixels da logo */
+      var cv=document.createElement("canvas");cv.width=image.width;cv.height=image.height;
+      var cx2=cv.getContext("2d");cx2.drawImage(image,0,0);
+      var data=cx2.getImageData(0,0,cv.width,cv.height).data;
+      var W=cv.width,H=cv.height, passo=3, k=0;   /* mais partículas (densidade maior) */
+      var tx=[],ty=[],cols=[],lats=[],lons=[];
+      for(var py=0;py<H;py++)for(var px=0;px<W;px++){
+        var i4=(py*W+px)*4;
+        if(data[i4+3]>110){
+          if((k++)%passo!==0)continue;
+          tx.push((px-W/2)/W*2.1+(Math.random()-.5)*.012);
+          ty.push(-(py-H/2)/W*2.1+(Math.random()-.5)*.012);
+          cols.push(liftColor(data[i4]/255,data[i4+1]/255,data[i4+2]/255));
+          lats.push((py+Math.random())/H);
+          lons.push((px+Math.random())/W);
+        }
+      }
+      var N=tx.length;
+      if(!N){ hero.classList.add("no-webgl"); return; }
+
+      /* baldes de cor (desenho em lote) */
+      var mapa={},buckets=[],bIdx=new Array(N);
+      for(var i=0;i<N;i++){var cc=cols[i],key=cc;if(!(key in mapa)){mapa[key]=buckets.length;buckets.push(cc);}bIdx[i]=mapa[key];}
+      var porBalde=buckets.map(function(){return[]});
+      for(i=0;i<N;i++)porBalde[bIdx[i]].push(i);
+
+      /* atraso por partícula → desenrolar em onda (mais suave) */
+      var atraso=new Float32Array(N);
+      for(var ai=0;ai<N;ai++) atraso[ai]=Math.random();
+
+      /* globo "logo embrulhada" (gw) */
+      var gw=new Float32Array(N*3);
+      for(i=0;i<N;i++){var la2=lats[i]*Math.PI,lo3=lons[i]*Math.PI*2;
+        gw[i*3]=Math.sin(la2)*Math.cos(lo3);gw[i*3+1]=Math.cos(la2);gw[i*3+2]=Math.sin(la2)*Math.sin(lo3);}
+
+      var w=0,h=0,cxp=0,cyp=0,s=0,dpr=1,wide=true;
+      function layout(){
+        w=hero.clientWidth; h=hero.clientHeight;
+        dpr=fitCanvas(canvas,w,h);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        wide = w/h > 1.05;
+        if(wide){ cxp=w*0.76; cyp=h*0.46; s=Math.min(w*0.135, h*0.28); }
+        else {
+          var winH=window.innerHeight||h;
+          var headerEl=document.getElementById("siteHeader");
+          var headerPx=headerEl?headerEl.offsetHeight:72;
+          cxp=w*0.5; cyp=headerPx + winH*0.17; s=Math.min(w*0.27, winH*0.105);
+        }
+        if(hit){
+          /* área de arraste em todos os ponteiros; touch-action:pan-y preserva o scroll vertical no toque */
+          var rad=s*1.25;
+          hit.style.display="block";
+          hit.style.left=(cxp-rad).toFixed(0)+"px";
+          hit.style.top=(cyp-rad).toFixed(0)+"px";
+          hit.style.width=hit.style.height=(rad*2).toFixed(0)+"px";
+        }
+      }
+      layout();
+      var rT=null;
+      window.addEventListener("resize", function(){ layout(); if(reduce) drawStatic(); });
+
+      /* desenha um quadro: u=0 globo embrulhado · u=1 logo plana · desenrolar em onda, como sopro de vento */
+      var SPREAD=0.85, WIND=0.05, windPhase=0;
+      function smooth(p){ return p<=0?0:p>=1?1:p*p*p*(p*(p*6-15)+10); }  /* smootherstep (bem suave) */
+      function desenhar(rotY,rotX,u,tam){
+        ctx.clearRect(0,0,w,h);
+        var cy_=Math.cos(rotY),sy_=Math.sin(rotY),cx_=Math.cos(rotX),sx_=Math.sin(rotX);
+        var glob=u<=0, flat=u>=1;
+        for(var b=0;b<buckets.length;b++){
+          ctx.fillStyle=buckets[b];
+          var lista=porBalde[b];
+          for(var q=0;q<lista.length;q++){
+            var idx=lista[q], lpv;
+            if(glob) lpv=0;
+            else if(flat) lpv=1;
+            else lpv=smooth(u*(1+SPREAD)-atraso[idx]*SPREAD);
+            var invp=1-lpv;
+            var gx=gw[idx*3], gy=gw[idx*3+1], gz=gw[idx*3+2];
+            var X=gx*invp + tx[idx]*lpv;
+            var Y=gy*invp + ty[idx]*lpv;
+            var Z=gz*invp;
+            if(lpv>0 && lpv<1){                 /* bafejo de vento no meio da transição */
+              var billow=Math.sin(Math.PI*lpv), ph=atraso[idx]*31.4;
+              X += billow*WIND*Math.sin(ph+windPhase);
+              Y += billow*WIND*0.6*Math.cos(ph*0.8+windPhase*1.3);
+              Z += gz*billow*0.16;
+            }
+            var x1=X*cy_+Z*sy_, z1=-X*sy_+Z*cy_;
+            var y1=Y*cx_-z1*sx_, z2=Y*sx_+z1*cx_;
+            var p=3/(3+z2);
+            ctx.fillRect(cxp+x1*s*p, cyp-y1*s*p, tam*p, tam*p);
+          }
+        }
+      }
+      function drawStatic(){ desenhar(0,0,1,2.2); }   /* movimento reduzido: logo estática e legível */
+
+      if(reduce){ drawStatic(); return; }
+
+      /* interação: arraste gira livremente o globo E a logo; a transformação é automática e muito suave */
+      var userY=0, userX=0, velY=0, velX=0, spin=0, dragging=false, lastPX=0, lastPY=0;
+      if(hit){
+        hit.addEventListener("pointerdown", function(e){
+          dragging=true; lastPX=e.clientX; lastPY=e.clientY; velY=0; velX=0;
+          try{ hit.setPointerCapture(e.pointerId); }catch(_){}
+          hit.classList.add("arrastando"); kick();
+        });
+        hit.addEventListener("pointermove", function(e){
+          if(!dragging) return;
+          var dx=(e.clientX-lastPX)/Math.max(1,hero.clientWidth);
+          var dy=(e.clientY-lastPY)/Math.max(1,hero.clientHeight);
+          lastPX=e.clientX; lastPY=e.clientY;
+          userY += dx*5; userX += dy*3;
+          velY=dx*5; velX=dy*3;
+        });
+        var soltar=function(){ dragging=false; hit.classList.remove("arrastando"); };
+        hit.addEventListener("pointerup", soltar);
+        hit.addEventListener("pointercancel", soltar);
+      }
+
+      /* ciclo MUITO lento da transformação (segundos): globo → desenrola → logo → embrulha */
+      var CG=5.0, CU=9.0, CL=2.5, CD=9.0, CT=CG+CU+CL+CD, CSET=1.2;   /* globo mais tempo; CSET = alinhar de frente antes de abrir/fechar */
+      var inView=true, rafId=null, t0=null, lastTs=null, cycT=0, u=0;
+      function frame(ts){
+        rafId=null;
+        if(!inView || document.hidden) return;
+        if(t0===null) t0=ts;
+        if(lastTs===null) lastTs=ts;
+        var dt=Math.min(0.05,(ts-lastTs)/1000); lastTs=ts;
+        windPhase += dt*0.5;
+
+        /* ciclo SEMPRE repetindo — nunca trava; o arraste soma à rotação, não pausa */
+        cycT += dt;
+        var tt=cycT%CT, uCyc, front;
+        if(tt<CG){                                   /* GLOBO: rotação livre; alinha de frente no fim */
+          uCyc=0; front=smooth(Math.max(0,Math.min(1,(tt-(CG-CSET))/CSET)));
+        }else if(tt<CG+CU){                          /* ABRE de frente */
+          uCyc=smooth((tt-CG)/CU); front=1;
+        }else if(tt<CG+CU+CL){                       /* LOGO: livre; alinha de frente no fim */
+          var kL=tt-(CG+CU); uCyc=1; front=smooth(Math.max(0,Math.min(1,(kL-(CL-CSET))/CSET)));
+        }else{                                       /* FECHA de frente */
+          uCyc=1-smooth((tt-CG-CU-CL)/CD); front=1;
+        }
+        u += (uCyc - u)*0.06;
+        var uu=u<0?0:u>1?1:u;
+
+        /* rotação LIVRE: giro automático do globo + arraste com inércia (sempre, não trava) */
+        spin += 0.0022*(1-uu)*(1-front);
+        if(!dragging){ userY += velY; velY*=0.95; userX += velX; velX*=0.95; }
+        /* SÓ na transformação (front>0) volta à rotação e posição original, de frente */
+        if(front>0){
+          var rf=front*0.12;
+          spin += (0-spin)*rf; userY += (0-userY)*rf; userX += (0-userX)*rf;
+        }
+        userX=Math.max(-1.5,Math.min(1.5,userX));
+
+        var rotY = spin + userY;
+        var rotX = 0.18*(1-uu) + userX;
+        rotX=Math.max(-1.5,Math.min(1.5,rotX));
+        desenhar(rotY, rotX, uu, 2.2);
+        rafId=requestAnimationFrame(frame);
+      }
+      function kick(){ if(!rafId) rafId=requestAnimationFrame(frame); }
+      whenVisible(hero, function(){ inView=true; kick(); }, function(){ inView=false; });
+      document.addEventListener("visibilitychange", function(){ if(!document.hidden){ inView=true; kick(); } });
+      kick();
+    }
+  }
+
+  /* ============================================================
+     2) RODAPÉ · distorção mesh 375 (grade que ondula no cursor)
+     ============================================================ */
+  /* rodapé sem efeito — apenas o wordmark APOCAM (função de malha removida) */
+
+  /* ============================================================
+     4) FUNDO GENERATIVO 406 (ondas no dot grid) — reutilizável
+     ============================================================ */
+  function initDot(host, cv){
+    if(!host || !cv || reduce) return;
+    var x=cv.getContext("2d");
+    var W=0,H=0,CO=20,RO=13,sx=0,sy=0,RP=[],lx=-99,ly=-99,idle=999,t=0,au=0,running=false,rafId=null;
+    function size(){
+      W=Math.max(200,host.clientWidth); H=Math.max(200,host.clientHeight);
+      var dpr=fitCanvas(cv,W,H); x.setTransform(dpr,0,0,dpr,0,0);
+      CO=Math.max(12,Math.min(38,Math.round(W/48)));
+      RO=Math.max(8,Math.min(30,Math.round(H/48)));
+      sx=W/(CO+1); sy=H/(RO+1);
+    }
+    size();
+    window.addEventListener("resize", size);
+    function rip(px,py,st){ RP.push({x:px,y:py,a:0,s:st}); if(RP.length>9) RP.shift(); }
+    host.addEventListener("pointermove", function(e){
+      var r=cv.getBoundingClientRect(), px=e.clientX-r.left, py=e.clientY-r.top; idle=0;
+      if(Math.hypot(px-lx,py-ly)>30){ rip(px,py,.7); lx=px; ly=py; }
+    });
+    function loop(){
+      rafId=null; if(!running) return;
+      t+=1/60; idle++; au+=1/60;
+      if(idle>150 && au>2.4){ au=0; rip(W*(.25+Math.random()*.5), H*(.25+Math.random()*.5), 1); }
+      x.clearRect(0,0,W,H);
+      for(var r=0;r<RP.length;r++) RP[r].a+=1/60;
+      for(var d=RP.length-1;d>=0;d--) if(RP[d].a>2) RP.splice(d,1);
+      for(var i=1;i<=CO;i++)for(var j=1;j<=RO;j++){
+        var bx=i*sx, by=j*sy, g=0, ox=0, oy=0;
+        for(var m=0;m<RP.length;m++){
+          var rp=RP[m], dx=bx-rp.x, dy=by-rp.y, dd=Math.hypot(dx,dy)+.01, rad=rp.a*110;
+          var e=Math.exp(-(dd-rad)*(dd-rad)/420)*Math.exp(-rp.a*1.1)*rp.s;
+          g+=e; ox+=dx/dd*e*8; oy+=dy/dd*e*8;
+        }
+        g=Math.min(1,g);
+        var br=Math.min(1,.14+.08*Math.sin(t*1.2+i*.7+j*.5)+g*.8);
+        x.beginPath(); x.arc(bx+ox,by+oy,1.1+2.6*g,0,6.29);
+        x.fillStyle=(g>.45?"rgba(217,169,108,":"rgba(244,234,217,")+br+")";
+        x.fill();
+      }
+      rafId=requestAnimationFrame(loop);
+    }
+    whenVisible(host, function(){ size(); running=true; if(!rafId) rafId=requestAnimationFrame(loop); }, function(){ running=false; });
+  }
+
+  /* ============================================================
+     5) Corrige o escurecimento das seções: o script.js aplica um
+        fade de saída (opacity->.5) no container de cada capítulo
+        ao rolar, e em seções curtas/na altura errada ele deixa a
+        seção rebaixada enquanto ainda é o foco. Desligamos só esse
+        gatilho de saída (start:'bottom …') em TODOS os capítulos,
+        preservando o fade de entrada, pins, parallax e o manifesto.
+     ============================================================ */
+  function unfadeSections(){
+    try{
+      var ST=window.ScrollTrigger;
+      if(!ST) return;
+      [].slice.call(document.querySelectorAll(".chapter")).forEach(function(sec){
+        ST.getAll().forEach(function(st){
+          var vs=st.vars||{};
+          if(st.trigger===sec && typeof vs.start==="string" && vs.start.indexOf("bottom")===0){ st.kill(); }
+        });
+        var wrap=sec.querySelector(":scope > .container");
+        if(wrap){ wrap.style.opacity=""; wrap.style.transform=""; }
+      });
+    }catch(_){}
+  }
+
+  onReady(function(){
+    try{ initHero(); }catch(e){ var hh=document.querySelector(".hero"); if(hh) hh.classList.add("no-webgl"); }
+    try{
+      [].slice.call(document.querySelectorAll("canvas.jv-dot")).forEach(function(cv){
+        initDot(cv.parentElement, cv);
+      });
+    }catch(e){}
+    try{ unfadeSections(); }catch(e){}
+  });
+  window.addEventListener("load", function(){ try{ unfadeSections(); }catch(e){} });
+})();
+</script>
+</body>
+</html>

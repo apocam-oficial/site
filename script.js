@@ -1,10 +1,14 @@
 /* ============================================================
-   APOCAM | Interações premium v2.2
-   Three.js: LOGO da APOCAM formada por partículas em alta
-   definição (≈19 mil pontos amostrados da marca real — os dados
-   da imagem ficam em logo-data.js, gerado automaticamente)
-   GSAP ScrollTrigger · Lenis · tilt · magnetic
-   Fallbacks: sem WebGL/libs/movimento → site estático completo.
+   APOCAM | Interações v3 — "Jornada do acolhimento"
+   Combinação cinematográfica (estilo alethia.earth):
+   · Lenis smooth scroll
+   · Hero: logo em partículas (Three.js) + título linha a linha + parallax
+   · Rail de capítulos (scroll-spy) + números-fantasma em parallax
+   · Manifesto que acende palavra por palavra (scrub)
+   · "Como funciona": cena PINADA com cross-fade das 4 etapas + contador
+   · Capítulos entrando com fade + escala + translate contínuos
+   · Fotos de parceiros em parallax · listas em cascata · botões magnéticos
+   Fallbacks: sem WebGL / sem GSAP / prefers-reduced-motion → site estático.
    ============================================================ */
 (function () {
   'use strict';
@@ -41,42 +45,17 @@
     window.gsap.registerPlugin(window.ScrollTrigger);
   }
 
+  var header = document.getElementById('siteHeader');
+
   function scrollToTarget(target) {
     var el = typeof target === 'string' ? document.querySelector(target) : target;
     if (!el) return;
-    var offset = -(document.getElementById('siteHeader').offsetHeight + 10);
+    var offset = -((header ? header.offsetHeight : 72) + 12);
     if (lenis) { lenis.scrollTo(el, { offset: offset, duration: 1.4 }); }
     else { el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); }
   }
 
-  /* Âncoras internas */
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var id = a.getAttribute('href');
-      if (id.length > 1 && document.querySelector(id)) {
-        e.preventDefault();
-        closeMenu();
-        scrollToTarget(id);
-      }
-    });
-  });
-
-  /* ---------------- Header: estado + barra de progresso ---------------- */
-  var header = document.getElementById('siteHeader');
-  var progress = document.getElementById('scrollProgress');
-  function onScrollUpdate() {
-    var y = window.scrollY || window.pageYOffset;
-    header.classList.toggle('scrolled', y > 24);
-    if (progress) {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
-    }
-  }
-  onScrollUpdate();
-  window.addEventListener('scroll', onScrollUpdate, { passive: true });
-  if (lenis) lenis.on('scroll', onScrollUpdate);
-
-  /* ---------------- Menu mobile fullscreen ---------------- */
+  /* ---------------- Menu mobile ---------------- */
   var toggle = document.getElementById('navToggle');
   function closeMenu() {
     if (!document.body.classList.contains('menu-open')) return;
@@ -95,126 +74,252 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
   }
 
-  /* ---------------- Animações de entrada / reveal ---------------- */
+  /* Âncoras internas */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length > 1 && document.querySelector(id)) {
+        e.preventDefault();
+        closeMenu();
+        scrollToTarget(id);
+      }
+    });
+  });
+
+  /* ---------------- Header: estado ao rolar ---------------- */
+  function onScrollUpdate() {
+    var y = window.scrollY || window.pageYOffset;
+    if (header) header.classList.toggle('scrolled', y > 24);
+  }
+  onScrollUpdate();
+  window.addEventListener('scroll', onScrollUpdate, { passive: true });
+  if (lenis) lenis.on('scroll', onScrollUpdate);
+
   if (!reduced) docEl.classList.add('anim');
 
+  /* ============================================================
+     ANIMAÇÕES COM GSAP / SCROLLTRIGGER
+     ============================================================ */
   if (!reduced && hasGsap && hasST) {
     var gsap = window.gsap, ST = window.ScrollTrigger;
 
-    /* Entrada do hero — estado inicial 100% via JS (nunca fica invisível) */
+    /* ---- Entrada do hero ---- */
     var h1Lines = document.querySelectorAll('.hero h1 .li');
     var intro = gsap.timeline({ defaults: { ease: 'power4.out' }, delay: 0.15 });
     if (h1Lines.length) {
-      gsap.set(h1Lines, { yPercent: 112 });
+      gsap.set(h1Lines, { yPercent: 115 });
       intro.to(h1Lines, { yPercent: 0, duration: 1.15, stagger: 0.12, overwrite: 'auto' }, 0);
     }
     intro.fromTo('.reveal-hero', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, 0.45);
 
-    /* Reveals gerais (itens de grade têm stagger próprio abaixo) */
-    gsap.utils.toArray('.reveal').forEach(function (el) {
-      if (el.parentElement && (el.parentElement.classList.contains('grid-3') || el.parentElement.classList.contains('parceiros-grid'))) return;
-      gsap.fromTo(el, { opacity: 0, y: 30 }, {
-        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+    /* ---- Hero parallax de saída (foreground mais rápido) ---- */
+    var heroSec = document.querySelector('.hero');
+    if (heroSec) {
+      gsap.to('.hero-inner', {
+        yPercent: -12, autoAlpha: 0, ease: 'none',
+        scrollTrigger: { trigger: heroSec, start: 'top top', end: 'bottom 28%', scrub: 0.5 }
       });
-    });
-
-    /* Stagger interno de grades */
-    gsap.utils.toArray('.grid-3, .parceiros-grid').forEach(function (grid) {
-      var items = grid.children;
-      gsap.fromTo(items, { opacity: 0, y: 34 }, {
-        opacity: 1, y: 0, duration: 0.85, stagger: 0.09, ease: 'power3.out',
-        scrollTrigger: { trigger: grid, start: 'top 84%', once: true }
-      });
-    });
-
-    /* Timeline: linha desenha com o scroll + etapas acendem */
-    var tl = document.getElementById('timeline');
-    var tlProgress = document.getElementById('tlProgress');
-    if (tl && tlProgress) {
-      gsap.fromTo(tlProgress, { scaleY: 0 }, {
-        scaleY: 1, ease: 'none',
-        scrollTrigger: { trigger: tl, start: 'top 72%', end: 'bottom 55%', scrub: 0.6 }
-      });
-      gsap.utils.toArray('.tl-step').forEach(function (step) {
-        gsap.fromTo(step, { opacity: 0, x: -26 }, {
-          opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: step, start: 'top 80%', once: true }
-        });
-        ST.create({
-          trigger: step, start: 'top 66%', end: 'bottom 40%',
-          onEnter: function () { step.classList.add('active'); },
-          onLeaveBack: function () { step.classList.remove('active'); }
-        });
+      gsap.to('.scroll-cue', {
+        autoAlpha: 0, ease: 'none',
+        scrollTrigger: { trigger: heroSec, start: 'top top', end: '16% top', scrub: true }
       });
     }
+
+    /* ---- Aurora de fundo à deriva (camada lenta) ---- */
+    gsap.utils.toArray('.aurora-blob').forEach(function (b, i) {
+      gsap.to(b, {
+        yPercent: (i % 2 === 0 ? 1 : -1) * (14 + i * 6), xPercent: (i % 2 === 0 ? -1 : 1) * 6, ease: 'none',
+        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 1.2 }
+      });
+    });
+
+    /* ---- Números-fantasma em parallax ---- */
+    gsap.utils.toArray('.ghost-num').forEach(function (g) {
+      var host = g.closest('.chapter');
+      gsap.fromTo(g, { yPercent: -9 }, {
+        yPercent: 9, ease: 'none',
+        scrollTrigger: { trigger: host, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+      });
+    });
+
+    /* ---- Reveals gerais (exceto etapas do deck) ---- */
+    gsap.utils.toArray('.reveal').forEach(function (el) {
+      if (el.closest('#passosDeck')) return;
+      gsap.fromTo(el, { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+
+    /* ---- Caminhos (participar): stagger ---- */
+    var caminhos = document.querySelector('.caminhos');
+    if (caminhos) {
+      gsap.fromTo(caminhos.children, { opacity: 0, y: 34 }, {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: caminhos, start: 'top 82%', once: true }
+      });
+    }
+
+    /* ---- Capítulos entrando: fade + escala + translate contínuos ---- */
+    gsap.utils.toArray('.chapter').forEach(function (sec) {
+      if (sec.id === 'como-funciona') return; /* pinado — não transformar o container */
+      var wrap = sec.querySelector(':scope > .container');
+      if (!wrap) return;
+      gsap.fromTo(wrap, { opacity: 0.35, y: 60, scale: 0.97 }, {
+        opacity: 1, y: 0, scale: 1, ease: 'none',
+        scrollTrigger: { trigger: sec, start: 'top 88%', end: 'top 42%', scrub: 0.5 }
+      });
+      if (sec.id !== 'acolhimento') {
+        gsap.fromTo(wrap, { opacity: 1, y: 0 }, {
+          opacity: 0.5, y: -34, ease: 'none', immediateRender: false,
+          scrollTrigger: { trigger: sec, start: 'bottom 42%', end: 'bottom 6%', scrub: 0.5 }
+        });
+      }
+    });
+
+    /* ---- Fotos dos parceiros em parallax ---- */
+    gsap.utils.toArray('.foto-mask img').forEach(function (img) {
+      gsap.fromTo(img, { yPercent: -11 }, {
+        yPercent: 1, ease: 'none',
+        scrollTrigger: { trigger: img.closest('.parceiro'), start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+      });
+    });
+
+    /* ---- Rail de capítulos: scroll-spy ---- */
+    document.querySelectorAll('.rail a[data-rail]').forEach(function (link) {
+      var sec = document.getElementById(link.getAttribute('data-rail'));
+      if (!sec) return;
+      ST.create({
+        trigger: sec, start: 'top 55%', end: 'bottom 45%',
+        onToggle: function (self) { link.classList.toggle('on', self.isActive); }
+      });
+    });
+
+    /* ---- Manifesto: acende palavra por palavra ---- */
+    var frase = document.getElementById('manifestoFrase');
+    if (frase) {
+      var words = splitWords(frase);
+      if (words.length) {
+        gsap.set(words, { opacity: 0.16 });
+        gsap.to(words, {
+          opacity: 1, ease: 'none', stagger: 0.5,
+          scrollTrigger: { trigger: '#manifesto', start: 'top 74%', end: 'top 14%', scrub: 0.4 }
+        });
+      }
+    }
+
+    /* ---- "Como funciona": cena PINADA + cross-fade das etapas ---- */
+    setupPassos(gsap, ST);
+
+    /* Recalcular após tudo carregar (fontes, imagens) */
+    window.addEventListener('load', function () { ST.refresh(); });
+
   } else {
-    /* Fallback sem GSAP: IntersectionObserver simples */
+    /* ---------------- Fallback sem GSAP / reduzido ---------------- */
     docEl.classList.add('no-gsap');
-    var els = document.querySelectorAll('.reveal');
+    var revs = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.classList.add('in'); });
-      document.querySelectorAll('.tl-step').forEach(function (s) { s.classList.add('active'); });
-      var p = document.getElementById('tlProgress');
-      if (p) p.style.transform = 'scaleY(1)';
+      revs.forEach(function (el) { el.classList.add('in'); });
     } else {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            if (e.target.classList.contains('tl-step')) e.target.classList.add('active');
-            io.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      els.forEach(function (el) { io.observe(el); });
-      document.querySelectorAll('.tl-step').forEach(function (s) { io.observe(s); });
-      var p2 = document.getElementById('tlProgress');
-      if (p2) p2.style.transform = 'scaleY(1)';
+      revs.forEach(function (el) { io.observe(el); });
     }
   }
 
-  /* ---------------- Tilt 3D nos cards de parceiros ---------------- */
-  if (finePointer && !reduced) {
-    document.querySelectorAll('[data-tilt]').forEach(function (card) {
-      var rect = null, raf = null, rx = 0, ry = 0, tx = 0, ty = 0;
-      function loop() {
-        rx += (tx - rx) * 0.12; ry += (ty - ry) * 0.12;
-        card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(3) + 'deg) rotateY(' + ry.toFixed(3) + 'deg)';
-        if (Math.abs(tx - rx) > 0.01 || Math.abs(ty - ry) > 0.01) { raf = requestAnimationFrame(loop); }
-        else raf = null;
+  /* ---- Split de palavras preservando os <em> ---- */
+  function splitWords(root) {
+    var out = [];
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var parts = ch.nodeValue.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (p === '' ) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); }
+            else { var s = document.createElement('span'); s.className = 'w'; s.textContent = p; frag.appendChild(s); out.push(s); }
+          });
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1) {
+          walk(ch);
+        }
+      });
+    })(root);
+    return out;
+  }
+
+  /* ---- Cena pinada das etapas (desktop) / reveal simples (mobile) ---- */
+  function setupPassos(gsap, ST) {
+    var pin = document.getElementById('passosPin');
+    var deck = document.getElementById('passosDeck');
+    if (!pin || !deck || typeof gsap.matchMedia !== 'function') {
+      /* sem matchMedia: revela as etapas normalmente */
+      if (deck) gsap.fromTo(deck.querySelectorAll('.passo'), { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: deck, start: 'top 82%', once: true }
+      });
+      return;
+    }
+    var steps = deck.querySelectorAll('.passo');
+    var numEl = document.getElementById('passoNum');
+    var ticks = document.querySelectorAll('#passoTicks b');
+
+    function setActive(idx) {
+      if (numEl) numEl.textContent = String(idx + 1).padStart(2, '0');
+      ticks.forEach(function (b, i) { b.classList.toggle('on', i <= idx); });
+    }
+
+    var mm = gsap.matchMedia();
+
+    /* Desktop: trava a cena e faz cross-fade entre as etapas */
+    mm.add('(min-width: 1024px)', function () {
+      pin.classList.add('is-deck');
+      gsap.set(steps, { autoAlpha: 0, y: 42 });
+      gsap.set(steps[0], { autoAlpha: 1, y: 0 });
+      setActive(0);
+
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: pin,
+          start: 'center center',
+          end: '+=' + ((steps.length - 1) * 620),
+          pin: true, scrub: 0.5, anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: function (self) {
+            var idx = Math.min(steps.length - 1, Math.round(self.progress * (steps.length - 1)));
+            setActive(idx);
+          }
+        }
+      });
+      for (var i = 1; i < steps.length; i++) {
+        tl.to(steps[i - 1], { autoAlpha: 0, y: -42, duration: 0.5 }, i);
+        tl.to(steps[i], { autoAlpha: 1, y: 0, duration: 0.5 }, i);
       }
-      card.addEventListener('pointerenter', function () { rect = card.getBoundingClientRect(); });
-      card.addEventListener('pointermove', function (e) {
-        if (!rect) rect = card.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width;
-        var py = (e.clientY - rect.top) / rect.height;
-        tx = (0.5 - py) * 6;
-        ty = (px - 0.5) * 6;
-        card.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
-        card.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
-        if (!raf) raf = requestAnimationFrame(loop);
-      });
-      card.addEventListener('pointerleave', function () {
-        tx = 0; ty = 0; rect = null;
-        if (!raf) raf = requestAnimationFrame(loop);
-      });
+
+      return function () {
+        pin.classList.remove('is-deck');
+        gsap.set(steps, { clearProps: 'opacity,visibility,transform' });
+      };
     });
 
-    /* Brilho que segue o mouse nos cards comuns */
-    document.querySelectorAll('.card').forEach(function (card) {
-      card.addEventListener('pointermove', function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-        card.style.setProperty('--gy', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    /* Mobile: etapas empilhadas revelam em cascata */
+    mm.add('(max-width: 1023px)', function () {
+      gsap.fromTo(steps, { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: deck, start: 'top 82%', once: true }
       });
+      return function () { gsap.set(steps, { clearProps: 'opacity,transform' }); };
     });
   }
 
   /* ---------------- Botões magnéticos ---------------- */
   if (finePointer && !reduced) {
     document.querySelectorAll('[data-magnetic]').forEach(function (btn) {
-      var strength = 18;
+      var strength = 16;
       btn.addEventListener('pointermove', function (e) {
         var r = btn.getBoundingClientRect();
         var x = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
@@ -230,8 +335,6 @@
 
   /* ================================================================
      HERO 3D: logo da APOCAM formada por partículas (alta definição)
-     A miniatura da marca vem de logo-data.js (window.APOCAM_LOGO_URI),
-     amostrada pixel a pixel → ≈19.000 partículas com as cores reais.
      ================================================================ */
   var LOGO_URI = (typeof window.APOCAM_LOGO_URI === 'string' && window.APOCAM_LOGO_URI.indexOf('data:image') === 0)
     ? window.APOCAM_LOGO_URI : null;
@@ -262,7 +365,6 @@
       var group = new THREE.Group();
       scene.add(group);
 
-      /* Textura circular → partículas redondas */
       function circleTexture() {
         var cv = document.createElement('canvas');
         cv.width = cv.height = 64;
@@ -279,9 +381,6 @@
       }
       var dotTex = circleTexture();
 
-      /* Mantém o MATIZ exato da logo; só garante luminosidade mínima
-         para que os tons escuros (folhas azul-petróleo) leiam certo
-         sobre o fundo escuro do hero, sem virar cinza. */
       function liftColor(r, g, b) {
         var mx = Math.max(r, g, b), mn = Math.min(r, g, b);
         var d = mx - mn, l = (mx + mn) / 2, h = 0;
@@ -306,7 +405,6 @@
         return [rr + m, gg + m, bb + m];
       }
 
-      /* ----- Amostragem dos pixels da logo (alta definição) ----- */
       var c2d = document.createElement('canvas');
       c2d.width = image.width; c2d.height = image.height;
       var ctx = c2d.getContext('2d');
@@ -314,7 +412,7 @@
       var data = ctx.getImageData(0, 0, c2d.width, c2d.height).data;
 
       var W = c2d.width, H = c2d.height;
-      var worldW = 2.0;                 /* largura da logo no mundo 3D */
+      var worldW = 2.0;
       var s = worldW / W;
 
       var target = [], colors = [];
@@ -354,7 +452,6 @@
       var leafPts = new THREE.Points(geo, mat);
       group.add(leafPts);
 
-      /* ----- Poeira dourada/verde-água ambiente ----- */
       var dustN = 240;
       var dPos = new Float32Array(dustN * 3);
       var dCol = new Float32Array(dustN * 3);
@@ -380,10 +477,6 @@
       var dust = new THREE.Points(dGeo, dMat);
       scene.add(dust);
 
-      /* ----- Posição/tamanho 100% responsivos -----
-         Calcula a área visível da câmera e encaixa o símbolo:
-         · telas largas → metade direita, sem invadir a coluna de texto
-         · telas estreitas/retrato → faixa superior reservada pelo CSS */
       var worldH = worldW * (H / W);
       var FOVr = camera.fov * Math.PI / 180;
       var hit = document.getElementById('logoHit');
@@ -393,20 +486,17 @@
         renderer.setSize(w, h, false);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
-        var visH = 2 * Math.tan(FOVr / 2) * camera.position.z; /* altura visível em z=0 */
+        var visH = 2 * Math.tan(FOVr / 2) * camera.position.z;
         var visW = visH * camera.aspect;
         wide = w / h > 1.05;
         leafPts.visible = true;
         if (wide) {
-          /* telas largas: emblema na metade direita */
           var availW = visW * 0.40, availH = visH * 0.78;
           baseK = Math.min(availW / worldW, availH / worldH, 0.95);
           baseX = visW * 0.265;
           baseY = 0.02;
           opTarget = 0.96;
         } else {
-          /* celular/retrato: emblema em faixa própria acima do texto
-             (no topo, a logo do header sai de cena — o emblema É a marca) */
           var winH = window.innerHeight || h;
           var headerEl = document.getElementById('siteHeader');
           var headerPx = headerEl ? headerEl.offsetHeight : 72;
@@ -421,17 +511,16 @@
         group.position.x = baseX;
         group.position.y = baseY;
         group.scale.set(baseK, baseK, baseK);
-        /* zona de interação (arrastar para girar) sobre o emblema */
         if (hit) {
           var pw = w * (worldW * baseK / visW) * 1.18;
-          var ph2 = h * (worldH * baseK / visH) * 1.18;
+          var ph3 = h * (worldH * baseK / visH) * 1.18;
           var pxc = w * (0.5 + baseX / visW);
           var pyc = h * (0.5 - baseY / visH);
           hit.style.display = 'block';
           hit.style.width = pw.toFixed(0) + 'px';
-          hit.style.height = ph2.toFixed(0) + 'px';
+          hit.style.height = ph3.toFixed(0) + 'px';
           hit.style.left = (pxc - pw / 2).toFixed(0) + 'px';
-          hit.style.top = (pyc - ph2 / 2).toFixed(0) + 'px';
+          hit.style.top = (pyc - ph3 / 2).toFixed(0) + 'px';
         }
       }
       layout();
@@ -445,7 +534,6 @@
         }, 120);
       });
 
-      /* ----- Interação: arrastar para girar a logo (mouse e toque) ----- */
       var dragging = false, userY = 0, userX = 0, velY = 0, velX = 0;
       if (hit) {
         var lastPX = 0, lastPY = 0;
@@ -472,7 +560,6 @@
         hit.addEventListener('pointercancel', soltar);
       }
 
-      /* ----- Mouse parallax ----- */
       var mx = 0, my = 0, tmx = 0, tmy = 0;
       if (finePointer) {
         window.addEventListener('pointermove', function (e) {
@@ -481,7 +568,6 @@
         }, { passive: true });
       }
 
-      /* ----- Entrada ----- */
       if (hasGsap) {
         window.gsap.to(mat, { opacity: opTarget, duration: 1.6, ease: 'power2.out', delay: 0.3 });
         window.gsap.to(dMat, { opacity: 0.5, duration: 2.4, ease: 'power2.out', delay: 0.8 });
@@ -489,7 +575,6 @@
         mat.opacity = opTarget; dMat.opacity = 0.5;
       }
 
-      /* ----- Loop: formação + flutuação (pausa fora da tela/aba) ----- */
       var formed = 0;
       var inView = true, rafId = null;
       var clock = new THREE.Clock();
@@ -514,9 +599,9 @@
         mx += (tmx - mx) * 0.045;
         my += (tmy - my) * 0.045;
         if (!dragging) {
-          userY += velY; velY *= 0.94;      /* inércia após soltar */
+          userY += velY; velY *= 0.94;
           userX += velX; velX *= 0.94;
-          userX *= 0.985;                   /* inclinação volta ao neutro */
+          userX *= 0.985;
         }
         group.rotation.y = userY + Math.sin(t * 0.14) * 0.08 + mx * 0.24;
         group.rotation.x = Math.max(-1, Math.min(1, userX + Math.cos(t * 0.11) * 0.04 + my * 0.12));
