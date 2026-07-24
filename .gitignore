@@ -1,1 +1,15 @@
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configurações locais de editores
+.vscode/
+.idea/
+
+# Arquivos locais de trabalho
+AGENTS.md
+backups/
+*.log
+*.zip
 /contexto-apocam-cowork_1.md
