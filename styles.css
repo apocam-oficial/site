@@ -2572,3 +2572,186 @@ h4 {
     background-attachment: scroll;
   }
 }
+
+/* =====================================================================
+   Reforma de 03/ago: sem glifos que viram emoji, rede em 3 grupos,
+   mobile compacto, efeitos de rolagem com escalonamento e menos CTA.
+   ===================================================================== */
+
+/* Seta dos cartões de entrada DESENHADA (o caractere unicode virava
+   emoji no Android) */
+.entry-arrow {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.entry-arrow::before,
+.entry-arrow::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+.entry-arrow::before {
+  left: 3px;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  transform: translateY(-50%) rotate(-45deg);
+  border-radius: 2px;
+}
+.entry-arrow::after {
+  right: 2px;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  background: none;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  border-radius: 1px;
+}
+
+/* Rede de cuidado em grupos */
+.network-groups {
+  display: grid;
+  gap: clamp(34px, 5vw, 54px);
+}
+.network-group__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.network-group__title span {
+  width: 34px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--green, #2e7d5b), var(--teal, #1d4550));
+  flex-shrink: 0;
+}
+
+/* Nota única de participação (no lugar dos três links repetidos) */
+.participation-note {
+  margin: 26px 0 0;
+  font-size: 1rem;
+}
+.participation-note a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Barra mobile com um só botão */
+.mobile-action-bar .mobile-action-bar__primary {
+  width: 100%;
+  text-align: center;
+}
+
+/* Revelação escalonada: cada item de grade entra um passo depois do
+   anterior (o observer já existe; aqui é só o ritmo) */
+.entry-grid .reveal:nth-child(2),
+.steps .reveal:nth-child(2),
+.professional-grid .reveal:nth-child(2),
+.participation-grid .reveal:nth-child(2) {
+  transition-delay: 90ms;
+}
+.entry-grid .reveal:nth-child(3),
+.steps .reveal:nth-child(3),
+.participation-grid .reveal:nth-child(3) {
+  transition-delay: 180ms;
+}
+.steps .reveal:nth-child(4) {
+  transition-delay: 270ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-grid .reveal,
+  .steps .reveal,
+  .professional-grid .reveal,
+  .participation-grid .reveal {
+    transition-delay: 0ms;
+  }
+}
+
+/* Mobile compacto: mesmas informações, metade da rolagem */
+@media (max-width: 680px) {
+  .section {
+    padding: 56px 0;
+  }
+  .hero {
+    min-height: 0;
+    padding: calc(var(--header) + 40px) 0 48px;
+  }
+  .section-heading {
+    margin-bottom: 26px;
+  }
+  .section-heading h2,
+  .manifesto-title h2 {
+    font-size: clamp(1.5rem, 6.4vw, 1.9rem);
+  }
+  .entry-section {
+    padding: 48px 0;
+  }
+  .entry-grid,
+  .participation-grid {
+    gap: 12px;
+  }
+  .entry-card,
+  .participation-card {
+    padding: 18px 16px;
+  }
+  .manifesto {
+    padding: 56px 0;
+  }
+  .statute-grid {
+    gap: 12px;
+  }
+  .statute-grid article {
+    padding: 14px 16px;
+  }
+  .steps {
+    gap: 12px;
+  }
+  .step {
+    padding: 18px 16px;
+  }
+  .clarity-panel {
+    padding: 20px 16px;
+  }
+  .botanical-band {
+    padding: 48px 0;
+  }
+  .network-groups {
+    gap: 30px;
+  }
+  .professional-photo {
+    min-height: 220px;
+  }
+  .professional-body {
+    padding: 18px 16px;
+  }
+  .faq-layout {
+    gap: 22px;
+  }
+  .participation-shell {
+    padding: 0;
+  }
+  .contact-layout {
+    gap: 22px;
+  }
+  .form-card {
+    padding: 22px 16px;
+  }
+  .map-card iframe {
+    min-height: 240px;
+  }
+  .footer-cta {
+    gap: 18px;
+  }
+  .site-footer .container {
+    padding-top: 48px;
+  }
+}
