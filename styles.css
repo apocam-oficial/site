@@ -2774,3 +2774,40 @@ h4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Títulos dos grupos da rede, desenho novo (03/ago): ponto com halo em
+   gradiente, rótulo espaçado em caixa alta e fio que se desvanece. */
+.network-group__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1d2b32;
+}
+.network-group__title span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2e7d5b, #1d4550);
+  box-shadow: 0 0 0 4px rgba(46, 125, 91, 0.16);
+  flex: none;
+}
+.network-group__title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(29, 69, 80, 0.28), transparent);
+}
+
+/* Encaixe do desktop com o interno em linha cheia: o dense deixa o
+   externo subir para o vão ao lado da equipe médica. */
+@media (min-width: 861px) {
+  .network-groups {
+    grid-auto-flow: dense;
+  }
+}
