@@ -2913,3 +2913,19 @@ h4 {
 .professional-body h3 {
   margin-bottom: 2px;
 }
+
+/* Selo do registro, afinado (03/ago): verde da marca no lugar do
+   cinza-petróleo, tipo menor e ar antes do texto de apresentação. */
+.professional-reg {
+  gap: 8px;
+  margin: 10px 0 16px;
+  padding: 4px 10px;
+  background: rgba(46, 125, 91, 0.09);
+  color: #2e7d5b;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.professional-reg span {
+  font-size: 0.6rem;
+  color: rgba(46, 125, 91, 0.7);
+}
