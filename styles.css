@@ -2755,3 +2755,22 @@ h4 {
     padding-top: 48px;
   }
 }
+
+/* Desktop da rede: os grupos de um card só dividem a linha (mesma
+   densidade do desenho original); o jurídico externo ocupa a linha
+   inteira com seus dois cards. Celular segue empilhado. */
+@media (min-width: 861px) {
+  .network-groups {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
+  .network-group--wide {
+    grid-column: 1 / -1;
+  }
+  .network-group .professional-grid {
+    grid-template-columns: 1fr;
+  }
+  .network-group--wide .professional-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
