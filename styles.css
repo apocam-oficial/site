@@ -3062,3 +3062,30 @@ h4 {
     font-size: clamp(2rem, 3vw + 0.3rem, 2.7rem);
   }
 }
+
+/* Hero de TELA CHEIA (03/ago): o cabeçalho é fixo e flutua sobre o
+   hero, então a altura tem que ser a janela inteira (não a janela menos
+   a barra) — senão sobra a faixa da seção seguinte no rodapé da tela.
+   `svh` acompanha a barra do navegador no celular; `vh` é a reserva. */
+@media (min-width: 861px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+  }
+  .hero-grid {
+    width: 100%;
+  }
+  .hero-visual {
+    min-height: min(560px, max(360px, calc(100svh - 240px)));
+  }
+}
+
+@media (min-width: 861px) and (max-height: 660px) {
+  .hero {
+    min-height: 100svh;
+    padding-top: calc(var(--header) + 20px);
+    padding-bottom: 34px;
+  }
+}
