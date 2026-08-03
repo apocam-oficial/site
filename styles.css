@@ -2929,3 +2929,9 @@ h4 {
   font-size: 0.6rem;
   color: rgba(46, 125, 91, 0.7);
 }
+
+/* Hero sem botão (03/ago): a nota de abertura ganha o espaço que era
+   das ações, para o bloco não ficar apertado no topo. */
+.hero-copy .hero-open-note {
+  margin-top: 26px;
+}
