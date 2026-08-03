@@ -2737,7 +2737,8 @@ h4 {
     gap: 22px;
   }
   .participation-shell {
-    padding: 0;
+    padding: 26px 18px;
+    border-radius: 20px;
   }
   .contact-layout {
     gap: 22px;
