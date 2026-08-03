@@ -2935,3 +2935,67 @@ h4 {
 .hero-copy .hero-open-note {
   margin-top: 26px;
 }
+
+/* =====================================================================
+   MENU DO CELULAR, correção de raiz (03/ago).
+   O cabeçalho usa backdrop-filter, e todo elemento com esse efeito vira
+   CONTAINING BLOCK para descendentes `position: fixed`. Como o painel do
+   menu mora dentro do cabeçalho, ele era posicionado em relação à barra
+   de 72px em vez da tela inteira: daí a sobreposição sobre o conteúdo.
+   Abaixo de 1080px o vidro fosco sai (fundo sólido, mais legível) e o
+   painel volta a ser uma folha de tela cheia de verdade.
+   ===================================================================== */
+@media (max-width: 1080px) {
+  .site-header,
+  .site-header.is-scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #fbf8f1;
+  }
+
+  .nav-links {
+    position: fixed;
+    inset: var(--header) 0 0;
+    z-index: 130;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 22px 26px 40px;
+    background: #fbf8f1;
+    box-shadow: 0 -1px 0 rgba(29, 69, 80, 0.08), 0 24px 48px rgba(20, 40, 46, 0.16);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 17px 2px;
+    border-bottom: 1px solid rgba(29, 69, 80, 0.09);
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  /* Setinha discreta em cada item, desenhada (sem glifo virar emoji) */
+  .nav-links a::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid rgba(29, 69, 80, 0.32);
+    border-right: 2px solid rgba(29, 69, 80, 0.32);
+    transform: rotate(45deg);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: 0;
+  }
+
+  /* O cabeçalho fica ACIMA do painel para o X continuar clicável */
+  .site-header {
+    z-index: 140;
+  }
+}
