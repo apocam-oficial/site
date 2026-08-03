@@ -2578,38 +2578,7 @@ h4 {
    mobile compacto, efeitos de rolagem com escalonamento e menos CTA.
    ===================================================================== */
 
-/* Seta dos cartões de entrada DESENHADA (o caractere unicode virava
-   emoji no Android) */
-.entry-arrow {
-  position: relative;
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-.entry-arrow::before,
-.entry-arrow::after {
-  content: "";
-  position: absolute;
-  background: currentColor;
-}
-.entry-arrow::before {
-  left: 3px;
-  top: 50%;
-  width: 14px;
-  height: 2px;
-  transform: translateY(-50%) rotate(-45deg);
-  border-radius: 2px;
-}
-.entry-arrow::after {
-  right: 2px;
-  top: 3px;
-  width: 8px;
-  height: 8px;
-  background: none;
-  border-top: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-  border-radius: 1px;
-}
+/* (a seta dos cartões saiu no polimento de 03/ago: cartão limpo, sem glifo) */
 
 /* Rede de cuidado em grupos */
 .network-groups {
@@ -2810,5 +2779,89 @@ h4 {
 @media (min-width: 861px) {
   .network-groups {
     grid-auto-flow: dense;
+  }
+}
+
+/* =====================================================================
+   Polimento de 03/ago: menu por cima de tudo, cartões num só desenho
+   (número em pílula, respiro, sombra suave), sem altura vazia.
+   ===================================================================== */
+
+/* MENU MOBILE: o painel abria ATRÁS do conteúdo (sem z-index). Agora é
+   uma folha sólida acima da página, e só o cabeçalho fica acima dela. */
+.site-header {
+  z-index: 120;
+}
+@media (max-width: 1080px) {
+  .nav-links {
+    z-index: 110;
+    background: var(--paper, #faf6ee);
+    box-shadow: 0 18px 40px rgba(20, 40, 46, 0.14);
+    overflow-y: auto;
+  }
+  .nav-links a {
+    font-size: 1.06rem;
+    font-weight: 700;
+  }
+}
+
+/* CARTÕES DE ENTRADA: sem altura fantasma e sem seta; número vira
+   pílula e o cartão cresce só o necessário. */
+.entry-card {
+  min-height: 0;
+  justify-content: flex-start;
+  gap: 16px;
+}
+.entry-card:hover {
+  transform: translateY(-4px);
+}
+.entry-number,
+.participation-card > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(29, 69, 80, 0.08);
+  color: #1d4550;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* CARTÕES DE PARTICIPAÇÃO: mesmo vocabulário visual, descolados da
+   moldura (sombra + borda) e sem espaço morto. */
+.participation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid rgba(29, 69, 80, 0.1);
+  border-radius: 20px;
+  background: #fffdf9;
+  box-shadow: 0 10px 26px rgba(20, 40, 46, 0.07);
+}
+.participation-card h3 {
+  margin: 0;
+}
+.participation-card p {
+  margin: 0;
+}
+
+@media (max-width: 680px) {
+  .entry-card {
+    padding: 20px 18px;
+    min-height: 0;
+  }
+  .participation-grid {
+    gap: 14px;
+  }
+  .participation-card {
+    padding: 20px 18px;
+  }
+  .participation-note {
+    margin-top: 20px;
+    font-size: 0.98rem;
   }
 }
