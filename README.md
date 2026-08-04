@@ -11,8 +11,10 @@ O site é estático e não precisa de processo de compilação.
 ```text
 .
 |-- index.html
+|-- privacidade.html
 |-- styles.css
 |-- script.js
+|-- vercel.json
 |-- assets
 |   |-- cannabis-bg.jpg
 |   |-- brand
@@ -35,29 +37,31 @@ O site é estático e não precisa de processo de compilação.
 
 Abra o arquivo `index.html` em um navegador moderno.
 
-## Publicação pelo GitHub Pages
+## Publicação
 
-1. Envie os arquivos para a branch principal do repositório.
-2. Abra as configurações do repositório no GitHub.
-3. Acesse a seção Pages.
-4. Escolha a branch principal e a pasta raiz.
-5. Salve e aguarde a publicação.
+O site é publicado na Vercel (projeto `site`) e responde em https://apocam.ong.br e https://www.apocam.ong.br. A publicação é feita por linha de comando, com `npx vercel --prod --yes --scope apocam` na raiz do repositório. O projeto ainda não está conectado ao GitHub, então enviar commit para a branch principal não publica nada sozinho, e publicar a partir de uma pasta que não contenha o `vercel.json` colocaria o site no ar sem os cabeçalhos de segurança.
+
+Os cabeçalhos de segurança ficam em `vercel.json` e valem para todas as rotas. Depois de cada publicação, confira com `curl -sI https://apocam.ong.br` se `Content-Security-Policy`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` e `Cross-Origin-Opener-Policy` aparecem, e abra a página inicial e a política com o console do navegador aberto para confirmar que nada foi bloqueado por engano.
 
 ## Contato oficial
 
 - WhatsApp: (61) 99512-7355
-- E-mail: medicina.apocam@gmail.com
+- E-mail: contato@apocam.ong.br
 - Sede: SCES Trecho 2, Lote 32, Pier 21, Loja R60C, Asa Sul, Brasília/DF
 
 ## Formulário de acolhimento
 
-O formulário está preparado para usar o Web3Forms. Para ativar o envio:
+O formulário está inativo por decisão da associação: a diretoria ainda precisa definir para onde as mensagens vão e quem, dentro da APOCAM, terá acesso a elas. Enquanto isso, o cartão do formulário avisa que o canal está em configuração e indica o WhatsApp e o e-mail oficiais.
 
-1. Gere uma chave de acesso no Web3Forms.
-2. Substitua `SUA-CHAVE-WEB3FORMS-AQUI` no arquivo `index.html`.
-3. Teste o envio antes da publicação.
+O bloqueio não depende do JavaScript. O `vercel.json` publica `form-action 'self'` e `connect-src 'self'`, então nem o envio nativo do HTML nem o `fetch` do `script.js` conseguem sair do site. É isso que sustenta o item 03 da Política de Privacidade.
 
-Enquanto a chave não estiver configurada, o site direciona a pessoa para o WhatsApp oficial.
+Para ativar o envio, tudo no mesmo commit:
+
+1. Decida o destino em diretoria e registre quem recebe as mensagens, onde ficam guardadas e por quanto tempo.
+2. Atualize a Política de Privacidade antes de ligar o formulário: item 03 (destino), item 07 (empresa que passa a participar da operação) e item 08 (transferência internacional, se o destino ficar fora do Brasil).
+3. Libere o destino escolhido apenas em `connect-src`, no `vercel.json`. Mantenha `form-action 'self'` para que nada seja enviado quando o JavaScript não roda.
+4. Substitua `SUA-CHAVE-WEB3FORMS-AQUI` em `index.html` pela chave do serviço escolhido, revise o texto do consentimento e remova o aviso `.form-notice`.
+5. Teste o envio em produção antes de anunciar o canal.
 
 ## Serviços externos
 

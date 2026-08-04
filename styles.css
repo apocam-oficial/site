@@ -930,7 +930,7 @@ h4 {
 
 .clarity-panel {
   display: grid;
-  grid-template-columns: 0.8fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1.2fr;
   gap: 42px;
   padding: 38px;
   border-radius: 24px;
@@ -965,11 +965,6 @@ h4 {
   height: 9px;
   border-radius: 50%;
   background: var(--green);
-}
-
-.clarity-panel__limits li::before {
-  border: 2px solid var(--orange);
-  background: transparent;
 }
 
 .botanical-band {
@@ -1430,6 +1425,22 @@ h4 {
 .form-intro {
   margin-bottom: 30px;
   color: var(--muted);
+}
+
+.form-notice {
+  margin-bottom: 28px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: rgba(235, 126, 30, 0.12);
+  color: #7A3B08;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.form-notice a {
+  color: inherit;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
 }
 
 .field {
@@ -2118,11 +2129,21 @@ h4 {
 @media (max-width: 1080px) {
   .nav-links {
     position: fixed;
-    inset: var(--header) 0 0;
+    /* Altura explícita, e não `inset`: o backdrop-filter do .site-header faz dele o
+       bloco de contenção dos filhos fixos, então `bottom: 0` resolveria contra a
+       altura do cabeçalho e o painel colapsaria para o próprio padding. Com top e
+       height medidos na janela, o resultado é o mesmo com ou sem backdrop-filter. */
+    top: var(--header);
+    right: 0;
+    left: 0;
+    height: calc(100vh - var(--header));
+    height: calc(100dvh - var(--header));
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 34px 30px;
     background: var(--paper);
     transform: translateX(100%);
@@ -3088,4 +3109,100 @@ h4 {
     padding-top: calc(var(--header) + 20px);
     padding-bottom: 34px;
   }
+/* ================================================================
+   Política de Privacidade (privacidade.html)
+
+   Bloco aditivo no fim do arquivo. Nenhuma regra acima foi alterada.
+   Todo seletor depende de uma classe .legal-*, que só existe na
+   página da política (e no link .legal-link do formulário), portanto
+   nada aqui muda o desenho da página inicial.
+
+   Por que existe: a página da política precisa de um único h1 por
+   acessibilidade, e as regras de título do site são por elemento
+   (.manifesto h2, .section-heading h2). Sem estas linhas o título da
+   página ficaria sem estilo, e cada tópico do documento herdaria o
+   tamanho de título de seção (até 4.2rem), grande demais para um
+   texto legal com 17 tópicos.
+   ================================================================ */
+
+.legal-title {
+  margin-bottom: 18px;
+  color: var(--white);
+  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+/* Abertura da política. Mesmo peso visual do bloco da página inicial, mas
+   sem itálico, sem aspas e sem <blockquote>: a frase é da própria política,
+   não é citação de documento nenhum. O slot de fonte de citação
+   (.statute-source) fica reservado a citações reais, como a do Estatuto na
+   página inicial. Precisa do encadeamento .manifesto-content > p.legal-lede
+   para vencer .manifesto-content > p, que fixa font-size 1.03rem. */
+.manifesto-content > p.legal-lede {
+  max-width: 720px;
+  margin-bottom: 14px;
+  color: var(--white);
+  font-family: var(--font-reading);
+  font-size: clamp(1.4rem, 2.8vw, 2.25rem);
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.manifesto-content > p.legal-version {
+  margin-bottom: 32px;
+  color: var(--orange);
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.legal-topic {
+  max-width: 760px;
+  margin-bottom: 54px;
+}
+
+.legal-topic h2 {
+  margin-bottom: 16px;
+  color: var(--blue);
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.legal-topic > p:not(.eyebrow) {
+  margin-bottom: 16px;
+  color: var(--ink);
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.legal-topic > p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-topic > p.network-note {
+  margin: 30px 0 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.legal-panel {
+  margin-bottom: 54px;
+}
+
+.legal-link {
+  color: var(--blue);
+  font-weight: 700;
+  border-bottom: 2px solid var(--orange);
+  transition: border-color 220ms ease;
+}
+
+.legal-link:hover {
+  border-bottom-color: var(--green);
 }

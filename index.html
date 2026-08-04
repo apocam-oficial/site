@@ -17,6 +17,17 @@
   <meta property="og:description" content="Cuidado popular, orientação baseada em evidências e acompanhamento social para pacientes e famílias.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="APOCAM">
+  <meta property="og:url" content="https://apocam.ong.br/">
+  <!-- Prévia de link: URL absoluta e imagem quadrada de 512px, porque abaixo de
+       200px os leitores de prévia descartam a imagem. summary, e não
+       summary_large_image, para o símbolo aparecer como miniatura ao lado do texto. -->
+  <meta property="og:image" content="https://apocam.ong.br/assets/brand/og-apocam.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Símbolo da APOCAM: folhas em verde, azul e laranja sobre o nome APOCAM.">
+  <meta name="twitter:card" content="summary">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,10 +172,6 @@
             <li>Orienta sobre caminhos de acesso.</li>
             <li>Realiza encaminhamentos de caráter referencial.</li>
           </ul>
-          <ul class="clarity-panel__limits">
-            <li>Não presta serviços médicos.</li>
-            <li>Não promete resultados terapêuticos ou decisões judiciais.</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -174,7 +181,7 @@
       <div class="botanical-band__overlay"></div>
       <div class="container botanical-band__content reveal">
         <p class="eyebrow eyebrow--light">Nosso compromisso</p>
-        <p class="botanical-quote">Informar sem criminalizar.<br>Acolher sem julgar.<br>Orientar sem prometer.</p>
+        <p class="botanical-quote">Informar.<br>Acolher.<br>Orientar.</p>
       </div>
     </section>
 
@@ -399,6 +406,9 @@
             <h3>Como podemos ajudar?</h3>
             <p class="form-intro">Pedimos apenas os dados necessários para que a equipe retorne o contato.</p>
 
+            <p class="form-notice">Este canal ainda está em configuração e não recebe mensagens. Por enquanto, fale pelo <a href="https://wa.me/5561995127355?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20APOCAM." target="_blank" rel="noopener">WhatsApp (61) 99512-7355</a> ou por <a href="mailto:contato@apocam.ong.br">contato@apocam.ong.br</a>.</p>
+
+            <!-- Formulário inativo, e o bloqueio vem do vercel.json (form-action e connect-src), não do JavaScript. Roteiro de ativação no README, seção "Formulário de acolhimento". -->
             <form id="acolhimentoForm" action="https://api.web3forms.com/submit" method="POST">
               <input type="hidden" name="access_key" value="SUA-CHAVE-WEB3FORMS-AQUI">
               <input type="hidden" name="subject" value="Novo contato de acolhimento, site APOCAM">
@@ -446,7 +456,7 @@
 
               <details class="privacy-note">
                 <summary>Como cuidamos dos seus dados</summary>
-                <p>As informações deste formulário devem ser usadas somente para retorno e triagem inicial. Compartilhe apenas o necessário. Antes da publicação do site, o fluxo de armazenamento e acesso deve ser validado pela APOCAM.</p>
+                <p>Pedimos só o necessário para retornar o seu contato, e nada além disso. Neste primeiro momento, não envie laudo, exame, documento nem detalhe clínico: se algo mais for preciso, a equipe indica um canal adequado e explica o motivo. Como usamos, com quem compartilhamos e como você pede exclusão está na nossa <a class="legal-link" href="privacidade.html">Política de Privacidade</a>.</p>
               </details>
 
               <button class="btn btn--primary btn--block" type="submit">Enviar pedido de contato</button>
@@ -508,6 +518,7 @@
           <a href="#faq">Dúvidas</a>
           <a href="#participar">Participar</a>
           <a href="#acolhimento">Acolhimento</a>
+          <a href="privacidade.html">Política de Privacidade</a>
         </nav>
 
         <div class="footer-contact">
