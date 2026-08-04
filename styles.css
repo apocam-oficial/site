@@ -2113,11 +2113,21 @@ h4 {
 @media (max-width: 1080px) {
   .nav-links {
     position: fixed;
-    inset: var(--header) 0 0;
+    /* Altura explícita, e não `inset`: o backdrop-filter do .site-header faz dele o
+       bloco de contenção dos filhos fixos, então `bottom: 0` resolveria contra a
+       altura do cabeçalho e o painel colapsaria para o próprio padding. Com top e
+       height medidos na janela, o resultado é o mesmo com ou sem backdrop-filter. */
+    top: var(--header);
+    right: 0;
+    left: 0;
+    height: calc(100vh - var(--header));
+    height: calc(100dvh - var(--header));
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 34px 30px;
     background: var(--paper);
     transform: translateX(100%);
