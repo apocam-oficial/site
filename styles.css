@@ -1030,6 +1030,19 @@ h4 {
   line-height: 1.3;
 }
 
+/* Em tela estreita a faixa do compromisso fala centralizada. O rotulo e um
+   flex (regra compartilhada de .eyebrow), entao o centro dele vem do
+   justify-content, nao do text-align. */
+@media (max-width: 860px) {
+  .botanical-band__content {
+    text-align: center;
+  }
+
+  .botanical-band__content .eyebrow {
+    justify-content: center;
+  }
+}
+
 .network-section {
   background: #F7F1E7;
 }
