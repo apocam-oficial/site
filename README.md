@@ -46,7 +46,7 @@ Os cabeçalhos de segurança ficam em `vercel.json` e valem para todas as rotas.
 ## Contato oficial
 
 - WhatsApp: (61) 99512-7355
-- E-mail: contato@apocam.ong.br
+- E-mail: medicina.apocam@gmail.com
 - Sede: SCES Trecho 2, Lote 32, Pier 21, Loja R60C, Asa Sul, Brasília/DF
 
 ## Formulário de acolhimento
