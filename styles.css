@@ -3182,6 +3182,7 @@ h4 {
     padding-top: calc(var(--header) + 20px);
     padding-bottom: 34px;
   }
+}
 /* ================================================================
    Política de Privacidade (privacidade.html)
 
@@ -3286,5 +3287,71 @@ h4 {
 @media (prefers-reduced-motion: reduce) {
   .nav-links.is-open a::after {
     animation-delay: 0ms !important;
+  }
+}
+
+/* ================================================================
+   CARTÕES DE ENTRADA: forma aprovada pela presidência em 04/ago.
+
+   Este bloco vem DEPOIS do polimento de 03/ago de propósito. Aquele
+   bloco transformou o número em pílula cinza e zerou a altura do
+   cartão; a forma aprovada é o selo cheio na cor do cartão, com a
+   seta no rodapé. Mexer aqui em vez de editar o bloco de cima
+   preserva o polimento equivalente dos cartões de participação.
+
+   A seta é SVG de traço, nunca o caractere de seta: o glifo virava
+   emoji colorido no Android, que foi o motivo de ela ter saído.
+   ================================================================ */
+.entry-card {
+  min-height: 285px;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.entry-number {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  align-self: flex-start;
+  padding: 0;
+  border-radius: 50% 50% 14px 50%;
+  background: var(--entry-accent, var(--teal));
+  box-shadow: 0 8px 20px rgba(29, 69, 80, 0.16);
+  color: var(--entry-ink, var(--white));
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.entry-arrow {
+  position: absolute;
+  right: 22px;
+  bottom: 20px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: var(--entry-accent, var(--teal));
+  transition: transform 220ms var(--ease);
+}
+
+.entry-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.entry-card:hover .entry-arrow {
+  transform: translate(4px, -4px);
+}
+
+/* No celular o cartão volta a crescer só o necessário, que é o ganho
+   real do polimento de 03/ago, sem perder o selo nem a seta. */
+@media (max-width: 680px) {
+  .entry-card {
+    min-height: 0;
+    gap: 14px;
+    padding-bottom: 54px;
   }
 }

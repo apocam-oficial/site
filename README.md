@@ -41,6 +41,8 @@ Abra o arquivo `index.html` em um navegador moderno.
 
 O site é publicado na Vercel (projeto `site`) e responde em https://apocam.ong.br e https://www.apocam.ong.br. A publicação é feita por linha de comando, com `npx vercel --prod --yes --scope apocam` na raiz do repositório. O projeto ainda não está conectado ao GitHub, então enviar commit para a branch principal não publica nada sozinho, e publicar a partir de uma pasta que não contenha o `vercel.json` colocaria o site no ar sem os cabeçalhos de segurança.
 
+Antes de publicar, rode `node tools/checar-css.mjs`. Ele falha se o `styles.css` tiver bloco ou comentário sem fechar. Isso já foi ao ar: uma `@media` sem chave de fechamento prendeu todo o CSS seguinte dentro dela, e a Política de Privacidade ficou sem estilo em produção sem ninguém perceber, porque o navegador não reclama, apenas ignora. O risco aparece sempre que duas linhas de trabalho acrescentam blocos no fim do mesmo arquivo.
+
 Os cabeçalhos de segurança ficam em `vercel.json` e valem para todas as rotas. Depois de cada publicação, confira com `curl -sI https://apocam.ong.br` se `Content-Security-Policy`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` e `Cross-Origin-Opener-Policy` aparecem, e abra a página inicial e a política com o console do navegador aberto para confirmar que nada foi bloqueado por engano.
 
 ## Contato oficial
