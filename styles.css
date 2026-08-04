@@ -3169,10 +3169,24 @@ h4 {
     align-items: center;
   }
   .hero-grid {
-    width: 100%;
+    /* Largura de CONTAINER, nunca 100%: esta regra vem depois da .container
+       no arquivo e a atropela. Com 100% o grid ocupava a janela inteira em
+       todo desktop (texto colado na borda esquerda e selo vazando na direita,
+       visto em producao numa tela de 2545px em 04/ago). A formula e a mesma
+       da .container; num item de flex a margin-inline auto segue centrando. */
+    width: min(calc(100% - 40px), var(--container));
   }
   .hero-visual {
     min-height: min(560px, max(360px, calc(100svh - 240px)));
+  }
+}
+
+/* O selo avanca 22px sobre a foto (right: -22px). Ate 1224px de janela a
+   margem do container e de so 20px, entao esses 22px furavam a borda da
+   tela por 2px. Nessa faixa o selo fica rente a foto. */
+@media (min-width: 861px) and (max-width: 1224px) {
+  .hero-seal {
+    right: 0;
   }
 }
 
