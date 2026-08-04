@@ -930,7 +930,7 @@ h4 {
 
 .clarity-panel {
   display: grid;
-  grid-template-columns: 0.8fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1.2fr;
   gap: 42px;
   padding: 38px;
   border-radius: 24px;
@@ -965,11 +965,6 @@ h4 {
   height: 9px;
   border-radius: 50%;
   background: var(--green);
-}
-
-.clarity-panel__limits li::before {
-  border: 2px solid var(--orange);
-  background: transparent;
 }
 
 .botanical-band {
