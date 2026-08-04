@@ -3028,15 +3028,61 @@ h4 {
     font-weight: 700;
   }
 
-  /* Setinha discreta em cada item, desenhada (sem glifo virar emoji) */
+  /* Marcador de cada item: a folha da marca, nao quadrado nem losango.
+     O ::after do desktop e um sublinhado absoluto com fundo teal; aqui ele
+     precisa ser zerado por inteiro, senao sobra o retangulo colorido que
+     virava losango ao receber um rotate, e virava quadrado no item atual
+     porque a regra de estado ativo trocava a transform por scaleX(1). */
   .nav-links a::after {
     content: "";
-    width: 8px;
-    height: 8px;
-    border-top: 2px solid rgba(29, 69, 80, 0.32);
-    border-right: 2px solid rgba(29, 69, 80, 0.32);
-    transform: rotate(45deg);
+    position: static;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    flex: none;
+    width: 11px;
+    height: 11px;
+    border: 0;
+    border-radius: 100% 0;
+    background: rgba(29, 69, 80, 0.24);
+    transform: rotate(-18deg);
+    transform-origin: center;
+    transition: background 280ms ease, transform 280ms var(--ease);
   }
+
+  .nav-links a:hover::after {
+    background: rgba(29, 69, 80, 0.42);
+    transform: rotate(-18deg) scale(1.12);
+  }
+
+  /* Item atual: a folha abre, enche de cor e ganha respiro proprio */
+  .nav-links a[aria-current="true"]::after {
+    background: var(--teal);
+    transform: rotate(-18deg) scale(1.5);
+  }
+
+  /* Entrada escalonada quando o menu abre: cada folha desabrocha um passo
+     depois da anterior, em vez do giro seco de antes. */
+  @keyframes folha-desabrocha {
+    from {
+      opacity: 0;
+      transform: rotate(-70deg) scale(0.35);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(-18deg) scale(1);
+    }
+  }
+
+  .nav-links.is-open a::after {
+    animation: folha-desabrocha 460ms var(--ease) backwards;
+  }
+
+  .nav-links.is-open a:nth-child(1)::after { animation-delay: 90ms; }
+  .nav-links.is-open a:nth-child(2)::after { animation-delay: 160ms; }
+  .nav-links.is-open a:nth-child(3)::after { animation-delay: 230ms; }
+  .nav-links.is-open a:nth-child(4)::after { animation-delay: 300ms; }
+  .nav-links.is-open a:nth-child(5)::after { animation-delay: 370ms; }
 
   .nav-links a:last-child {
     border-bottom: 0;
@@ -3232,4 +3278,13 @@ h4 {
 
 .legal-link:hover {
   border-bottom-color: var(--green);
+}
+
+/* O bloco global de prefers-reduced-motion zera a DURACAO das animacoes, mas nao
+   o atraso. Como as folhas do menu entram escalonadas com fill backwards, elas
+   ficariam invisiveis durante o atraso para quem pede menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+  .nav-links.is-open a::after {
+    animation-delay: 0ms !important;
+  }
 }
