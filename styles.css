@@ -1981,6 +1981,16 @@ h4 {
   --icon-edge: rgba(235, 126, 30, 0.44);
 }
 
+/* Instagram (05/ago): a marca vai no degradê oficial, por decisão do gestor.
+   É a única exceção às quatro cores da casa no rodapé, e existe porque logo de
+   rede social é reconhecida pela cor. O berço fica num rosa discreto, tirado do
+   magenta do próprio degradê, para o cartão não brigar com os vizinhos. */
+.footer-contact-icon--instagram {
+  --icon-color: #D6249F;
+  --icon-soft: rgba(214, 36, 159, 0.14);
+  --icon-edge: rgba(214, 36, 159, 0.4);
+}
+
 .footer-icon-glyph {
   position: relative;
   display: block;
@@ -2071,6 +2081,21 @@ h4 {
   height: 9px;
   border-radius: 50%;
   background: var(--blue);
+}
+
+/* A marca vem do arquivo assets/brand/instagram.svg, que carrega o degradê
+   dentro dele. Os outros glifos do rodapé são desenhados em CSS porque são
+   formas genéricas (balão, envelope, alfinete); esta é uma marca registrada,
+   e marca se reproduz, não se redesenha. */
+.footer-contact-icon--instagram .footer-icon-glyph {
+  width: 27px;
+  height: 27px;
+  background: url("assets/brand/instagram.svg") center / contain no-repeat;
+}
+
+.footer-contact-icon--instagram .footer-icon-glyph::before,
+.footer-contact-icon--instagram .footer-icon-glyph::after {
+  content: none;
 }
 
 .footer-contact-copy {

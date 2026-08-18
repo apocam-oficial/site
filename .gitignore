@@ -13,3 +13,6 @@ backups/
 *.log
 *.zip
 /contexto-apocam-cowork_1.md
+
+.vercel
+.env*
