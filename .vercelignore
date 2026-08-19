@@ -1,0 +1,17 @@
+# O deploy sobe a PASTA LOCAL inteira (nao ha build), e o .gitignore nao vale
+# para o `npx vercel --prod`: e ESTE arquivo que decide o que vai ao ar.
+# Achado da varredura de 18/08/2026: o zip do kit de Instagram (10,3 MB), os
+# mockups e as ferramentas internas estavam publicos em producao.
+.git
+.gitignore
+.vercelignore
+.agents
+.env*
+README.md
+AGENTS.md
+tools
+mockups
+backups
+*.zip
+APOCAM-instagram-kit-v2-2026-07-24
+contexto-apocam-cowork_1.md
